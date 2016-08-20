@@ -1,0 +1,54 @@
+<section>
+  <ul class="admin_tab">
+    <li><a  href="{:U('Admin/Order/serviceWaitReceive')}">待接单</a></li>
+    <li><a  href="{:U('Admin/Order/waitFinish')}">待完成</a></li>
+    <li><a  class="active" >已完成</a></li>
+    <li><a href="{:U('Admin/Order/cancelList')}" >已取消</a></li>
+  </ul>
+  <!--tabCont1-->
+  <div class="admin_tab_cont" style="display:block;" id="tab1">
+    <section>
+      <table class="table">
+        <tr>
+          <th>订单号</th>
+          <th>服务名称</th>
+          <th>用户姓名</th>
+          <th>师傅姓名</th>
+          <th>定金(元)</th>
+          <th>金币抵扣(元)</th>
+          <th>实付(元)</th>
+          <th>需服务时间</th>
+          <th>完成时间</th>
+          <th>操作</th>
+        </tr>
+        <foreach name='arr' item='v'>
+        <tr>
+         <td>{$v.order_num}</td>
+          <td>{$v.service_name}</td>
+          <td>{$v.username}</td>
+          <td>{$v.sifuname}</td>
+          <td>{$v.deposit}</td>
+          <td>{$v.gold_money}</td>
+          <td>{$v.total_amount}</td>
+          <td>{$v.service_time|date="Y-m-d H:i:s",###}</td>
+          <td>{$v.end_time|date="Y-m-d H:i:s",###}</td>
+          <td>
+          <a href="{:U('Admin/Order/orderDelete')}?order_id={$v.order_id}" class="inner_btn2" >删除</a>
+          </td>
+        </tr>
+        </foreach>
+      </table>
+      <aside class="paging">
+        {$str}
+      </aside>
+    </section>
+  </div>
+
+</section>
+<script>
+$(document).ready(function() {
+$('#service_order').addClass('active');
+
+})
+
+</script>

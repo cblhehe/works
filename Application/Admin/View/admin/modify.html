@@ -1,0 +1,96 @@
+<section>
+	<ul class="admin_tab">
+		<li><a href="{:U('Admin/Admin/admin')}" >添加管理员</a></li>
+		<li><a class="active">修改管理员</a></li>
+		<li><a href="{:U('Admin/Admin/adminList')}">管理员列表</a></li>
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+		<ul class="ulColumn2">
+			<li>
+				<span class="item_name" style="width:120px;">管理员账号：</span>
+				<input type="text" class="textbox textbox_225" name="username" id="username" value="{$re.username}" />
+				<input type="hidden" name="oldName" value="{$re.username}" id="oldName">
+				<span class="errorTips" id="w1">管理员名称不能为空！</span>
+				<span class="errorTips" id="w11">该管理员名称已存在！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">密码：</span>
+				<input type="password" class="textbox textbox_225" name="password" id="password" value="{$re.password}"/>
+				<input type="hidden" name="oldPwd" value="{$re.password}">
+				<span class="errorTips" id="w2">密码不能为空！</span>
+			</li>
+			<li>
+		        <span class="item_name" style="width:120px;">管理员角色：</span>
+		        <label class="single_selection">
+		        <input type="radio" name="role" value="0"  <if condition='$re.role eq 0 '>checked='checked'</if>/>普通管理员</label>
+		        <label class="single_selection">
+		        <input type="radio" name="role" value="2" <if condition='$re.role eq 2 '>checked='checked'</if>/>中级管理员</label>
+		        <label class="single_selection">
+		        <input type="radio" name="role" value="1" <if condition='$re.role eq 1 '>checked='checked'</if>/>超级管理员</label>
+	       	</li>
+	       	<li style="color:gray;font-size:12px;padding-left:50px;margin-top:30px;">
+	       	<p>管理员权限说明：</p><br/>
+	       	<p>1、普通管理员可操作功能模块为：商品管理、广告管理</p><br/>
+	       	<p>2、中级管理员可操作功能模块为：会员管理、订单管理</p><br/>
+	       	<p>3、超级管理员具有最高权限，可操作所有模块</p>
+	       	</li>
+			<li>
+				<span class="item_name" style="width:120px;"></span>
+				<input type="submit" class="link_btn" id="submit" value="提交"/>
+			</li>
+		</ul>
+	</div>
+	
+	
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+
+$('#admin').addClass('active');
+
+
+//	提交前
+$('#submit').click(function(){
+	if ($.trim($('#username').val())=='') {
+		$('#w1').show();
+		return false;
+	}else{
+		$('#w1').hide();
+	}
+	if ($.trim($('#password').val())=='') {
+		$('#w2').show();
+		return false;
+	}else{
+		$('#w2').hide();
+	}
+	var params = $("input").serialize();  
+	console.log(params);
+    var url = "{:U('Admin/Admin/reSave')}?admin_id={$re.admin_id}";  
+    $.ajax({  
+        type: "post",  
+        url: url,  
+        dataType: "json",  
+        data: params,  
+        success: function(data){  
+        	console.log(data);
+          if (data=='exist') {
+          	$('#w11').show();
+          	 setTimeout(function(){$('#w11').hide();},2000);  
+          	 return false;
+          }else if(data=='success'){
+          	 alert('修改成功!');
+          	 window.location.href="{:U('Admin/Admin/adminList')}";   
+          }else {
+          	alert('修改失败！');
+          }
+        }  
+      });  
+})
+
+
+
+});
+
+</script>

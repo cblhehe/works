@@ -1,0 +1,89 @@
+<section>
+	<ul class="admin_tab">
+		<li><a class="active">住房列表</a></li>
+		<li><a  href="{:U('Admin/Goods/roomAddPage')}">房屋添加</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+		<section>
+			<div class="page_title">
+				<h2 class="fl">住房列表</h2>
+			</div>
+			<table class="table">
+				<tr>
+					<th>房屋ID</th>
+					<th>房屋名称</th>
+					<th>住房类型</th>
+					<th>房间类型</th>
+					<!-- <th>佣金(元)</th> -->
+					<th>押金(元)</th>
+					<th>租金(元/天)</th>
+					<th>添加时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='arr' item='v'>
+				<tr>
+					<td>{$v.room_id}</td>
+					<td>{$v.room_name}</td>
+					<td>
+					<switch name="v.room_cate">
+					    <case value="1">名宿</case>
+					    <case value="2">酒店</case>
+					</switch>
+					</td>
+					<td>
+					<switch name="v.room_type">
+					    <case value="1">单租</case>
+					    <case value="2">整租</case>
+					</switch>
+					</td>
+					<!-- <td>{$v.brokerage}</td> -->
+					<td>{$v.deposit}</td>
+					<td>{$v.rental}</td>
+					<td>{$v.add_time|date="Y-m-d H:i:s",###}</td>
+					<td>
+					<notempty name='v.modify_time'>
+					{$v.modify_time|date="Y-m-d H:i:s",###}</td>
+					</notempty>
+					<td>
+					<a href="{:U('Home/Goods/roomDetail')}?room_id={$v.room_id}" class="inner_btn1">预览</a>
+					<a href="#" class="inner_btn" onclick="hasOrder(this,{$v.room_id},'修改')">修改</a>
+					<a href="#" class="inner_btn2" onclick="hasOrder(this,{$v.room_id},'删除')">删除</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<aside class="paging">
+				{$str}
+			</aside>
+		</section>
+	</div>
+
+</section>
+<script>
+$(document).ready(function() {
+	$('#room').addClass('active');
+});
+function hasOrder(obj,goods_id,action){
+	var url="{:U('Admin/Goods/hasOrder')}?goods_id="+goods_id;
+	$.ajax({  
+	    type: "post",  
+	    url: url,  
+	    dataType: "json",  
+	    success: function(data){  
+	      if (data=='success') {
+	      	 alert('该房间已交易过，不可'+action+'！');
+	      }else{
+	      	if (action=='修改') {
+	      		window.location.href="{:U('Admin/Goods/roomModifyPage')}?room_id="+goods_id;
+	      	}else if(action=='删除'){
+	      		window.location.href="{:U('Admin/Goods/roomDelete')}?room_id="+goods_id;
+	      	}
+	      	
+	      }
+	    }  
+	  });  
+}
+</script>

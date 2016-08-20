@@ -1,0 +1,253 @@
+<section>
+	<ul class="admin_tab">
+		<li><a href="{:U('Admin/Goods/roomList')}">房屋列表</a></li>
+		<li><a  class="active">房屋添加</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+	<form action="{:U('Admin/Goods/roomSave')}"  method="post" enctype="multipart/form-data">
+		<ul class="ulColumn2">
+			<li>
+				<span class="item_name" style="width:120px;">住房名称：</span>
+				<input type="text" class="textbox textbox_295 content" name="room_name" id="room_name" />
+				<span class="errorTips" id="t1">住房名称不能为空！</span>
+			</li>
+			<li>
+		        <span class="item_name" style="width:120px;">住房类型：</span>
+		        <select class="select" name="room_cate" id="room_cate">
+		         	<option value="0">选择住房类型</option>
+		         	<option value="1">名宿</option>
+		         	<option value="2">酒店</option>
+		        </select>
+		        <span class="errorTips" id="t2">请选择住房类型！</span>
+	       </li>
+	       <li>
+		        <span class="item_name" style="width:120px;">房间类型：</span>
+		        <select class="select" name="room_type" id="room_type">
+		         	<option value="0">选择房间类型</option>
+		         	<option value="1">单租</option>
+		         	<option value="2">整租</option>
+		        </select>
+		        <span class="errorTips" id="t3">请选择房间类型！</span>
+	       </li>
+			<li>
+				<span class="item_name" style="width:120px;">可住人数：</span>
+				<input type="text" class="textbox textbox_70 content" name="population" id="population"  />&nbsp;&nbsp;人
+				<span class="errorTips" id="t4">请填写可住人数！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">床位：</span>
+				<input type="text" class="textbox textbox_70 content" name="bed_num" id="bed_num"  />&nbsp;&nbsp;张
+				<span class="errorTips" id="t5">请填写床位！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">押金：</span>
+				<input type="text" class="textbox textbox_70 content" name="deposit" id="deposit"  />&nbsp;&nbsp;元
+				<span class="errorTips" id="t6">请填写押金！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">租金：</span>
+				<input type="text" class="textbox textbox_70 content" name="rental" id="rental"  />&nbsp;&nbsp;元/天
+				<span class="errorTips" id="t7">请填写租金！</span>
+			</li>
+			<!-- <li>
+				<span class="item_name" style="width:120px;">佣金：</span>
+				<input type="text" class="textbox textbox_70 content" name="brokerage" id="brokerage"  />&nbsp;&nbsp;元
+				<span class="errorTips" id="t8">请填写佣金！</span>
+			</li> -->
+			<li>
+		        <span class="item_name" style="width:120px;">是否独立卫生间：</span>
+		        <label class="single_selection"><input type="radio" name="toilet" value="1" checked="checked" />是</label>
+		        <label class="single_selection"><input type="radio" name="toilet" value="0"/>否</label>
+	       </li>
+	       <li>
+		        <span class="item_name" style="width:120px;">是否可加床位：</span>
+		        <label class="single_selection"><input type="radio" name="add_bed" value="1" checked="checked"/>是</label>
+		        <label class="single_selection"><input type="radio" name="add_bed" value="0"/>否</label>
+	       </li>
+	       <li>
+		        <span class="item_name" style="width:130px;">是否接待境外人士：</span>
+		        <label class="single_selection"><input type="radio" name="accept_foreigner" value="1" checked="checked"/>是</label>
+		        <label class="single_selection"><input type="radio" name="accept_foreigner" value="0"/>否</label>
+	       </li>
+	       <li>
+		        <span class="item_name" style="width:120px;">最少入住天数:</span>
+		        <select class="select" name="least_day" id="least_day">
+		         	<!-- <option value="0">选择最少入住天数</option> -->
+		         	<foreach name='day' item='v'>
+		         	<option value="{$v.day}">{$v.day}天</option>
+		         	</foreach>
+		        </select>
+		        <!-- <span class="errorTips" id="t9">选择最少入住天数!</span> -->
+	       </li>
+			<li>
+				<span class="item_name" style="width:120px;">住房地址：</span>
+				<input type="text" class="textbox textbox_295 content" name="address" id="address" />
+				<span class="errorTips" id="t10">住房地址不能为空！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">住房描述：</span>
+				<textarea id="description" name="description" class="textarea" style="width:500px;height:100px;"  ></textarea>
+				<span class="errorTips" id="t11">请填写住房描述！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">交通描述：</span>
+				<textarea  class="textarea" style="width:500px;height:100px;" name="traffic" id="traffic"></textarea>
+				<span class="errorTips" id="t12">请填写交通描述！</span>
+			</li>
+			
+	       <li>
+				<span class="item_name" style="width:120px;">预订条款：</span>
+				<textarea  class="textarea" style="width:500px;height:100px;" name="reservation_terms" id="reservation_terms"></textarea>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">住房图片：</span>
+				<label class="uploadImg">
+				<input type="file" name="room_images[]" id="room_images" multiple="multiple" />
+				<span>上传图片</span>
+				</label>
+				<img src='' id='img' height='82' alt='' style='margin:-22px 10px 18px 10px;display: none;' />
+				<span class="errorTips" id="t13">住房图片不能为空！</span>
+				<p style="padding:10px 0 0 130px;color:gray;font-size:12px;">按住Ctrl键不放，鼠标连续点击要选的图片，即可选中多张图片上传！</p>
+				<p style="padding:10px 0 0 130px;color:gray;font-size:12px;">建议图片尺寸：宽度/高度=5:3;单位：px.</p>
+				
+			</li>
+
+			<li>
+				<span class="item_name" style="width:120px;"></span>
+				<input type="submit" class="link_btn" id="submit" value="添加" />
+			</li>
+		</ul>
+	</form>
+	</div>
+
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#room').addClass('active');
+
+
+//上传图片预览
+$("#room_images").change(function(){
+    var objUrl = getObjectURL(this.files[0]) ;
+    if (objUrl) {
+    	$("#img").attr("src",objUrl).show();
+    	$('#t13').hide();
+    }
+}) ; 
+ 
+function getObjectURL(file) {
+		var url = null ; 
+		if (window.createObjectURL!=undefined) { // basic
+			url = window.createObjectURL(file) ;
+		} else if (window.URL!=undefined) { // mozilla(firefox)
+			url = window.URL.createObjectURL(file) ;
+		} else if (window.webkitURL!=undefined) { // webkit or chrome
+			url = window.webkitURL.createObjectURL(file) ;
+		}
+		return url ;
+}
+
+//	提交前
+$('#submit').click(function(){
+	if ($.trim($('#room_name').val())=='') {
+		$('#t1').show();
+		$('#room_name').focus();
+		return false;
+	}else{
+		$('#t1').hide();
+	}
+	if ($.trim($('#room_cate').val())==0) {
+		$('#t2').show();
+		$('#room_name').focus();
+		return false;
+	}else{
+		$('#t2').hide();
+	}
+	if ($.trim($('#room_type').val())==0) {
+		$('#t3').show();
+		$('#room_name').focus();
+		return false;
+	}else{
+		$('#t3').hide();
+	}
+	if ($.trim($('#population').val())=='') {
+		$('#t4').show();
+		$('#population').focus();
+		return false;
+	}else{
+		$('#t4').hide();
+	}
+	if ($.trim($('#bed_num').val())=='') {
+		$('#t5').show();
+		$('#population').focus();
+		return false;
+	}else{
+		$('#t5').hide();
+	}
+	if ($.trim($('#deposit').val())=='') {
+		$('#t6').show();
+		$('#deposit').focus();
+		return false;
+	}else{
+		$('#t6').hide();
+	}
+	if ($.trim($('#rental').val())=='') {
+		$('#t7').show();
+		$('#rental').focus();
+		return false;
+	}else{
+		$('#t7').hide();
+	}
+	/*if ($.trim($('#brokerage').val())=='') {
+		$('#t8').show();
+		$('#brokerage').focus();
+		return false;
+	}else{
+		$('#t8').hide();
+	}*/
+	/*if ($.trim($('#least_day').val())==0) {
+		$('#t9').show();
+		$('#brokerage').focus();
+		return false;
+	}else{
+		$('#t9').hide();
+	}*/
+	if ($.trim($('#address').val())=='') {
+		$('#t10').show();
+		$('#address').focus();
+		return false;
+	}else{
+		$('#t10').hide();
+	}
+	if ($.trim($('#description').val())=='') {
+		$('#t11').show();
+		$('#description').focus();
+		return false;
+	}else{
+		$('#t11').hide();
+	}
+
+	if ($.trim($('#traffic').val())=='') {
+		$('#t12').show();
+		$('#traffic').focus();
+		return false;
+	}else{
+		$('#t12').hide();
+	}
+	if ($.trim($("#img").attr("src"))=='') {
+		$('#t13').show();
+		return false;
+	}else{
+		$('#t13').hide();
+	}
+})
+
+
+});
+
+
+
+</script>

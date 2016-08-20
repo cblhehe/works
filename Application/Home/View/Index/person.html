@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>个人中心</title>
+    <meta name="keywords" content="素叶联盟">
+    <meta name="description" content="素叶联盟">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/base.css">
+</head>
+<body style='background:#ECECEC;'>
+
+<!--个人中心头像-->
+    <header>
+     <div class="photo-wrap" style="background: url('__PUBLIC__/home/img/person_photo_bg.png') no-repeat;  background-size: cover;;">
+         <div class="photo-mask"></div>
+         <div class="photo">
+             <img src="__PUBLIC__/home/img/person_photo.png" alt="">
+             <span>Cecilia</span>
+             <span class="person-level">
+                青铜会员
+             </span>
+         </div>
+     </div>
+    </header>
+
+<!--签到-->
+<div class="sel-wrap clear">
+    <div class="sel-item" id="qiandao">
+        <a href="javascript:;">
+            <i class="qiandao_icon"></i>
+            <span>签到</span>
+        </a>
+    </div>
+    <div class="sel-item">
+        <a href="javascript:;">
+            <i class="gold_icon"></i>
+            <span>金币</span>
+        </a>
+    </div>
+</div>
+<!--个人信息-->
+    <section class="pad-80">
+        <ul class="person-list">
+            <li class="person-item ub">
+                <div class="person-item-intro">
+                    <i class="person-item-icon myorder"></i>
+                    <span>我的订单</span>
+                </div>
+
+                <div class="person-item-turn ub-f1">
+                    <a href="{:U('Order/user_order_list')}">
+                        <i class="turn_icon"></i>
+                    <span>查看全部订单</span>
+                    </a>
+                </div>
+            </li>
+
+            <li class="person-item ub">
+                <div class="person-item-intro">
+                    <i class="person-item-icon person"></i>
+                    <span>个人资料</span>
+                </div>
+
+                <div class="person-item-turn ub-f1">
+                    <a href="{:U('User/info')}">
+                        <i class="turn_icon"></i>
+                    </a>
+                </div>
+            </li>
+
+            <li class="person-item ub" style="margin-top: 1px;">
+                <div class="person-item-intro">
+                    <i class="person-item-icon get"></i>
+                    <span>去接单</span>
+                </div>
+
+                <div class="person-item-turn ub-f1">
+                    <a href="{:U('Sifu/master_apply')}">
+                        <i class="turn_icon"></i>
+                    </a>
+                </div>
+            </li>
+
+            <li class="person-item ub">
+                <div class="person-item-intro">
+                    <i class="person-item-icon distributor"></i>
+                    <span>分销商</span>
+                </div>
+
+                <div class="person-item-turn ub-f1">
+                    <a href="javascript:;">
+                        <i class="turn_icon"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+<footer class="position-fixed-b foot clear">
+    <div class="foot-item ">
+        <a href="{:U('House/quarter')}">
+            <i class="quarter-icon"></i>
+            <span>住宿</span>
+        </a>
+    </div>
+    <div class="foot-item">
+        <a href="{:U('User/life')}">
+            <i class="life-icon"></i>
+            <span>
+                生活
+            </span>
+        </a>
+    </div>
+    <div class="foot-item">
+        <a href="{:U('Msg/message')}">
+            <i class="mes-icon"></i>
+            <span>消息</span>
+        </a>
+    </div>
+
+    <div class="foot-item active">
+        <a href="javascript:;">
+            <i class="my-icon"></i>
+            <span>我的</span>
+        </a>
+    </div>
+
+</footer>
+
+
+<!-- 弹出层 -->
+<section>
+    <div class="dig-mask" style="background-color: transparent;display: none"></div>
+    <div class="dig" style="height: auto;border-radius: 5px;top: 190px;background-color: #FA5750;display: none">
+        <div class="dig-content" style="height: 40px;">
+            <p class="dig-tip" style="color:#fff">提示内容</p>
+            <!--<button class="dig-btn">点击确定</button>-->
+        </div>
+    </div>
+</section>
+
+<script>
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+
+    var photo_wrap=get.getClass('photo-wrap')[0];
+    var pw=photo_wrap.offsetWidth;
+    photo_wrap.style.height=pw*.7+'px';
+
+
+
+    var dig={};
+    dig._btn=get.getClass('dig-btn')[0];
+    dig._mask=get.getClass('dig-mask')[0];;
+    dig._dig=get.getClass('dig')[0];
+    dig._tip=get.getClass('dig-tip')[0];
+
+    dig.closeFn=function () {
+        dig._mask.style.display='none';
+        dig._dig.style.display='none';
+    } ;
+    dig.showFn=function (str) {
+        dig._mask.style.display='block';
+        dig._dig.style.display='block';
+        dig._tip.innerHTML=str||'请补充信息完整';
+        setTimeout(dig.closeFn,1000);
+    } ;
+
+
+    // dig._btn.addEventListener('click',dig.closeFn,false);
+    dig._mask.addEventListener('click',dig.closeFn,false);
+
+    get.getID('qiandao').addEventListener('click',function () {
+        dig.showFn('签到成功');
+
+    },false)
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

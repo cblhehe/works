@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>素叶联盟-车辆录入</title>
+    <meta name="keywords" content="素叶联盟">
+    <meta name="description" content="素叶联盟">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/base.css">
+</head>
+<body style="background-color: #F5F3F3">
+
+<!--nav-->
+<div class="car_nav clear">
+    <div class="half-item">
+        <a href="javascript:;" class="active">
+            添加车辆
+        </a>
+    </div>
+    <div class="half-item">
+        <a href="{:I('Sifu/mycar_list')}">
+            车辆列表
+        </a>
+    </div>
+</div>
+
+<!--车辆录入-->
+<div class="order-apply car_inp">
+
+    <form action="#" id="form">
+
+    <div class="order-apply-item ub no-mar">
+        <div class="order-apply-intro">
+            <span>品牌</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <select class=" color-main ub ub-f1" id="brand">
+                <option value="" selected>品牌</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+                <option value="五菱宏光">五菱宏光</option>
+            </select>
+            <i class="turn_icon"></i>
+        </div>
+    </div>
+    <div class="order-apply-item ub ">
+        <div class="order-apply-intro">
+            <span>行驶证</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <input type="text" placeholder="上传行驶证照片"  data-index="0" class="color-main ub ub-f1" id="file_intro">
+            <input type="file" id="file">
+            <i class="car_card_icon"></i>
+        </div>
+    </div>
+    <div class="order-apply-item ub no-mar">
+        <div class="order-apply-intro">
+            <span>每日价格</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <input type="number" placeholder="请输入" class="color-main ub ub-f1" id="price">
+            <i>元/每天</i>
+        </div>
+    </div>
+    <div class="order-apply-item ub no-mar">
+        <div class="order-apply-intro">
+            <span>押金</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <input type="number" placeholder="请输入" class="color-main ub ub-f1" id="deposit">
+            <i>元</i>
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>价格区间</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <select class=" color-main ub ub-f1" id="priceRange">
+                <option value="" selected>请选择</option>
+                <option value="5w-10w">5w-10w</option>
+                <option value="10w-20w">10w-20w</option>
+                <option value="20w-50w">20w-50w</option>
+                <option value="50w-80w">50w-80w</option>
+                <option value="80w-120w">80w-120w</option>
+                <option value="120w-200w">120w-200w</option>
+                <option value="200w以上">200w以上</option>
+            </select>
+            <i class="turn_icon"></i>
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>车辆照片</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <input type="text" placeholder="上传车辆照片" data-index="0" class="color-main ub ub-f1" id="car_intro">
+            <input type="file" id="car">
+            <i class="car_card_icon"></i>
+        </div>
+    </div>
+    </form>
+
+
+</div>
+
+<div class="img-wrap clear">
+    <div class="half-img">
+        <img src="" alt="" id="showImg">
+        <span>驾驶证</span>
+    </div>
+    <div class="half-img">
+        <img src="" alt="" id="car_show">
+        <span>车辆照片</span>
+    </div>
+</div>
+
+<p class="safe-intro">
+    为保障出行安全，请务必填写本人的驾驶证资料，
+    驾驶证号同时会作为实名信息进行验证
+</p>
+
+<!-- 弹出层 -->
+<section>
+    <div class="dig-mask" style="background-color: transparent;display: none"></div>
+    <div class="dig" style="height: auto;border-radius: 5px;top: 190px;background-color: #FA5750;display: none">
+        <div class="dig-content" style="height: 40px;">
+            <p class="dig-tip" style="color:#fff">提示内容</p>
+            <!--<button class="dig-btn">点击确定</button>-->
+        </div>
+    </div>
+</section>
+
+<footer class="" style="margin-bottom: 20px;margin-top: 20px">
+    <a href="javascript:;"><button class="btn-main">提交信息</button></a>
+</footer>
+<script>
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+    var file=get.getID('file');
+    var showImg=get.getID('showImg');
+
+    var file_intro=get.getID('file_intro');
+    file.onchange=function () {
+        var files = this.files;
+        var mingurl=window.webkitURL.createObjectURL(files[0])|| window.URL.createObjectURL(files[0]);
+        showImg.src=mingurl;
+        this.value="";
+        file_intro.value="已上传";
+        file_intro.setAttribute('data-index','1');
+    };
+    var car=get.getID('car');
+    var car_show=get.getID('car_show');
+    var car_intro=get.getID('car_intro');
+
+    car.onchange=function () {
+        var files = this.files;
+        var mingurl=window.webkitURL.createObjectURL(files[0])|| window.URL.createObjectURL(files[0]);
+        car_show.src=mingurl;
+        this.value="";
+        car_intro.value="已上传";
+        car_intro.setAttribute('data-index','1');
+    };
+
+
+    var dig={};
+    dig._btn=get.getClass('dig-btn')[0];
+    dig._mask=get.getClass('dig-mask')[0];;
+    dig._dig=get.getClass('dig')[0];
+    dig._tip=get.getClass('dig-tip')[0];
+
+    dig.closeFn=function () {
+        dig._mask.style.display='none';
+        dig._dig.style.display='none';
+    } ;
+    dig.showFn=function (str) {
+        dig._mask.style.display='block';
+        dig._dig.style.display='block';
+        dig._tip.innerHTML=str||'请补充信息完整';
+        setTimeout(dig.closeFn,1000);
+    } ;
+
+
+   // dig._btn.addEventListener('click',dig.closeFn,false);
+    dig._mask.addEventListener('click',dig.closeFn,false);
+
+
+    var _btn_main=get.getClass('btn-main')[0];
+
+
+    //车辆录入验证
+    var form=get.getID('form');
+
+
+    _btn_main.addEventListener('click',function () {
+
+        var brand=get.getID('brand').value;
+        if( (brand==''||brand==null)){dig.showFn('请选择品牌'); return;}
+        var file_intro_index=file_intro.getAttribute('data-index');
+        if(file_intro_index==0){dig.showFn('请上传驾驶证'); return;}
+
+        var price=get.getID('price').value;
+
+        if(price==''||price==null){dig.showFn('请输入每日价格'); return;}
+        if(price<=0){dig.showFn('每日价格必须为正数'); return;}
+
+        var deposit=get.getID('deposit').value;
+       if(deposit==''||deposit==null){dig.showFn('请输入押金金额'); return;}
+       if(deposit<=0){dig.showFn('押金金额必须为正数'); return;}
+
+        var priceRange= get.getID('priceRange').value;
+        if( (priceRange==''||priceRange==null)){dig.showFn('请选择价格区间'); return;}
+
+        var car_intro_index=car_intro.getAttribute('data-index');
+        if(car_intro_index==0){dig.showFn('请上传车辆照片'); return;}
+        form.submit();
+    });
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<section>
+  <ul class="admin_tab">
+    <li><a  class="active">分销设置</a></li>
+    
+  </ul>
+  <!--tabCont1-->
+  <div class="admin_tab_cont" style="display:block;" id="tab1">
+    <ul class="ulColumn2">
+      <li>
+        <span class="item_name" style="width:150px;">一级分销商分佣比例：</span>
+        <input type="text" class="textbox textbox_70 content" name="first_scale" id="first_scale" <notempty name='re.first_scale'>value="{$re.first_scale}"</notempty> />&nbsp;%
+        <span class="errorTips" id="t1">分佣比例不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:150px;">二级分销商分佣比例：</span>
+        <input type="text" class="textbox textbox_70 content" name="second_scale" id="second_scale" <notempty name='re.second_scale'>value="{$re.second_scale}"</notempty>/>&nbsp;%
+        <span class="errorTips" id="t2">分佣比例不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:150px;">三级分销商分佣比例：</span>
+        <input type="text" class="textbox textbox_70 content" name="third_scale" id="third_scale" <notempty name='re.third_scale'>value="{$re.third_scale}"</notempty>/>&nbsp;%
+        <span class="errorTips" id="t3">分佣比例不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:150px;">提现条件：</span>
+        <input type="text" class="textbox textbox_70 content" name="condition" id="condition" <notempty name='re.condition'>value="{$re.condition}"</notempty>/>&nbsp;元
+        <span style="color:gray;padding-left:30px;font-size:12px;">备注：佣金达到多少才可以提现！</span>
+        <span class="errorTips" id="t4">提现条件不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:150px;">最少提现额度：</span>
+        <input type="text" class="textbox textbox_70 content" name="least_condition" id="least_condition" value="<notempty name='re.least_condition'>{$re.least_condition}<else/>1.00</notempty>"/>&nbsp;元
+        <span class="errorTips" id="t5">提现条件不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:150px;"></span>
+        <input type="submit" class="link_btn" id="submit" value="提交" />
+      </li>
+    </ul>
+  </div>
+
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#fenxiao').addClass('active');
+
+//  提交前
+$('#submit').click(function(){
+  if ($.trim($('#first_scale').val())=='') {
+    $('#t1').show();
+    $('#first_scale').focus();
+    return false;
+  }else{
+    $('#t1').hide();
+  }
+  if ($.trim($('#second_scale').val())=='') {
+    $('#t2').show();
+    $('#second_scale').focus();
+    return false;
+  }else{
+    $('#t2').hide();
+  }
+  if ($.trim($('#third_scale').val())=='') {
+    $('#t3').show();
+    $('#third_scale').focus();
+    return false;
+  }else{
+    $('#t3').hide();
+  }
+  if ($.trim($('#condition').val())=='') {
+    $('#t4').show();
+    $('#condition').focus();
+    return false;
+  }else{
+    $('#t4').hide();
+  }
+  if ($.trim($('#least_condition').val())=='') {
+    $('#t5').show();
+    $('#least_condition').focus();
+    return false;
+  }else{
+    $('#t5').hide();
+  }
+
+  var params = $("input").serialize();  
+  var url = "{:U('Admin/Fenxiao/fenxiaoSave')}?fenxiao_id={$re.fenxiao_id}";  
+    $.ajax({  
+        type: "post",  
+        url: url,  
+        dataType: "json",  
+        data: params,  
+        success: function(data){  
+            alert(data);
+        }  
+      });  
+  
+})
+
+});
+
+
+
+</script>

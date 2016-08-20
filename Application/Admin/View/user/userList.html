@@ -1,0 +1,75 @@
+<section>
+  <ul class="admin_tab">
+    <li><a class="active" >会员列表</a></li>
+  </ul>
+  <!--tabCont1-->
+  <div class="admin_tab_cont" style="display:block;" id="tab1">
+    <section>
+      <table class="table">
+        <tr>
+          <th>会员ID</th>
+          <th>昵称</th>
+          <th>真名</th>
+          <th>性别</th>
+          <th>出生日期</th>
+          <th>地址</th>
+          <th>邮箱</th>
+          <th>电话</th>
+          <th>消费总额</th>
+          <th>等级</th>
+          <!-- <th>状态</th>
+          <th>操作</th> -->
+
+        </tr>
+        <foreach name='arr' item='v'>
+        <tr>
+          <td>{$v.user_id}</td>
+          <td>{$v.nickname}</td>
+          <td>{$v.true_name}</td>
+          <td>
+          <switch name="v.sex">
+              <case value="0">女</case>
+              <case value="1">男</case>
+          </switch>
+          </td>
+          <td>
+          <notempty name='v.birthday'>
+            {$v.birthday|date="Y-m-d",###}
+          </notempty>
+          </td>
+          <td>{$v.address}</td>
+          <td>{$v.email}</td>
+          <td>{$v.phone}</td>
+          <td>{$v.total_amount}</td>
+          <td>{$v.level}</td>
+          
+<!--           <td>
+          <switch name="v.is_lock">
+              <case value="0">正常</case>
+              <case value="1">拉黑</case>
+          </switch>
+          </td> -->
+          <!-- <td>
+          <switch name="v.is_lock">
+              <case value="0"><a href="{:U('Admin/Admin/modify')}?admin_id={$v.admin_id}" class="inner_btn">拉黑</a></case>
+              <case value="1"><a href="#" onclick='del({$v.admin_id})' class="inner_btn2">取消拉黑</a></case>
+          </switch>
+          
+          
+          </td> -->
+        </tr>
+
+        </foreach>
+      </table>
+      <aside class="paging">
+        {$str}
+      </aside>
+    </section>
+  </div>
+
+</section>
+<script>
+$(document).ready(function() {
+  $('#user').addClass('active');
+});
+</script>

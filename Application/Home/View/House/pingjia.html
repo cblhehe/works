@@ -1,0 +1,114 @@
+<body style="background-color: #f5f5f5">
+<form action="#" method="post">
+    <div class="des-wrap ub">
+        <div class="img-wrap">
+            <img src="__PUBLIC__/home/img/order_list_item_pic.png" alt="">
+        </div>
+        <div class="text-wrap ub-f1">
+            <textarea name="" id="" cols="30" rows="10" placeholder="请评价"></textarea>
+        </div>
+    </div>
+
+    <div class="des-level">
+        <div class="des-level-item ub">
+            <span class="des-level-intro">描述相符</span>
+            <div class="ub ub-f1" >
+                <div class="star-wrap" onmousemove="get_canvas(event,this)">
+                    <span class="star active"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                </div>
+                <input type="text" value="" class="level-val" >
+            </div>
+        </div>
+        <div class="des-level-item ub">
+            <span class="des-level-intro">整洁卫生</span>
+            <div class="ub ub-f1" >
+               <div class="star-wrap" onmousemove="get_canvas(event,this)">
+                   <span class="star active"></span>
+                   <span class="star"></span>
+                   <span class="star"></span>
+                   <span class="star"></span>
+                   <span class="star"></span>
+               </div>
+                <input type="text" value="" class="level-val" >
+            </div>
+        </div>
+        <div class="des-level-item ub">
+            <span class="des-level-intro">交通位置</span>
+            <div class="ub ub-f1" >
+                <div class="star-wrap" onmousemove="get_canvas(event,this)">
+                    <span class="star active"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                </div>
+                <input type="text" value="" class="level-val" >
+            </div>
+        </div>
+        <div class="des-level-item ub">
+            <span class="des-level-intro">性价比</span>
+            <div class="ub ub-f1" >
+                <div class="star-wrap" onmousemove="get_canvas(event,this)">
+                    <span class="star active"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                    <span class="star"></span>
+                </div>
+                <input type="text" value="" class="level-val" >
+            </div>
+        </div>
+    </div>
+
+    <footer class="position-fixed-b ub pingjia">
+        <div class=" ub ub-f1">
+            <input type="checkbox" name="noname" id="noname">
+            <label for="noname">匿名评价</label>
+        </div>
+        <div class="bg-main pingjia-btn">
+            <button type="submit">发布评价</button>
+        </div>
+    </footer>
+</form>
+<script>
+    function get_canvas(ev,obj){
+        var  m_clientX = ev.clientX-obj.offsetLeft-66-10;  //鼠标坐标
+        var  obj_w=obj.offsetWidth;              //元素宽度
+        var level=m_clientX/obj_w;
+
+        var stars=obj.getElementsByClassName('star');
+        var level_val =obj.parentNode.getElementsByClassName('level-val')[0];
+        for(var i =0;i<stars.length;i++){
+            stars[i].className='star';
+
+        }
+           stars[0].className='star active';
+           level_val.value=1;
+            if(level>0.2){
+                stars[1].className='star active';
+                level_val.value=2;
+            }
+            if(level>0.4){
+                stars[2].className='star active';
+                level_val.value=3;
+            }
+        if(level>0.6){
+            stars[3].className='star active';
+            level_val.value=4;
+        }
+        if(level>0.8){
+            stars[4].className='star active';
+            level_val.value=5;
+        }
+
+
+
+
+    }
+</script>
+</body>
+</html>

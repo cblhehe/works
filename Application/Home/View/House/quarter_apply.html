@@ -1,0 +1,275 @@
+<body style="background-color: #f5f5f5">
+<form action="#">
+<div class="zhuce">
+
+    <div class="zhuce-apply-item ub">
+        <div class="zhuce-apply-intro">
+            <span style="height: 20px;width: auto">入住时间</span>
+        </div>
+        <div class="zhuce-apply-inp ub-f1 ub">
+           <div class="zhuce-apply-inp-addr ub ub-f1">
+               <label for="cainp" id="showcainp">
+                   <span>2016年</span>
+                   <span>8月5日</span>
+               </label>
+               <input type="text" id="cainp" placeholder="trigger calendar" style="display: none">
+           </div>
+        </div>
+    </div>
+
+    <div class="zhuce-apply-item ub">
+        <div class="zhuce-apply-intro">
+            <span style="height: 20px;width: auto">离开时间</span>
+        </div>
+        <div class="zhuce-apply-inp ub-f1 ub">
+            <div class="zhuce-apply-inp-addr ub ub-f1">
+                <label for="dt" id="showdt"><span>2016年</span>
+                    <span>8月5日</span></label>
+                <input type="text" id="dt" placeholder="trigger calendar" style="display: none">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="zhuce-apply-item ub">
+        <div class="zhuce-apply-intro">
+            <span style="height: 20px;width: auto;line-height: 23px">房间</span>
+        </div>
+        <div class="zhuce-apply-inp ub-f1 ub">
+            <div class="zhuce-apply-inp-addr ub ub-f1" style="border: none">
+                <input type="text" value="" style="background: none;border: none;" class="text-overflow" placeholder="请选择" id="carType"    disabled>
+                <input type="text" value="" id="carID" style="display: none">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="zhuce-apply-item ub">
+        <div class="zhuce-apply-intro">
+            <span style="height: 20px;width: auto;">电话</span>
+        </div>
+        <div class="zhuce-apply-inp ub-f1 ub">
+            <input type="number" placeholder="请输入电话号码" value="18080662068" style="height: auto" class="ub ub-f1 num" id="tel">
+        </div>
+    </div>
+    <div class="zhuce-apply-item ub">
+        <div class="half-item clear">
+            <span>入住 <b class="color-main" id="rent-time">1</b> 天</span>
+            <input type="text" value="" id="rent_time_" style="display: none">
+        </div>
+        <div class="half-item clear ub">
+            <span>押金 <b class="color-main" id="rent-deposit">0</b> 元</span>
+
+        </div>
+    </div>
+    <div class="zhuce-apply-item clear">
+        <div class="half-item clear ub " style="">
+            <span class="ub ub-f1" style="text-align: right">每晚 <b class="color-main" id="rent-price">0</b> 元</span>
+        </div>
+        <div class="half-item clear ub " style="">
+            <span class="ub ub-f1" style="text-align: right">总计 <b class="color-main" id="rent-count">0</b> 元</span>
+        </div>
+    </div>
+</div>
+
+</form>
+
+<footer class="position-fixed-b" style="margin-bottom: 20px">
+    <a href="javascript:;"><button class="btn-main">立即预定</button></a>
+</footer>
+
+<!-- 弹出层 -->
+<section>
+    <div class="dig-mask" style="background-color: rgba(0,0,0,.3);display: none"></div>
+    <div class="dig" style="height: auto;border-radius: 5px;top: 190px;background-color: #FA5750;display: none">
+        <div class="dig-content" style="height: 40px;">
+            <p class="dig-tip" style="color:#fff">提示内容</p>
+            <!--<button class="dig-btn">点击确定</button>-->
+        </div>
+    </div>
+</section>
+
+
+<div id="dd"></div>
+<div id="ca"></div>
+
+<div id="allmap" style="display: none"></div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/cookie.js"></script>
+<script>
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+
+
+    if(getCookie('carChooseTitle')){
+        var carInfo={
+            id:getCookie('carChooseId'),
+            title:getCookie('carChooseTitle'),
+            price:getCookie('carChoosePrice'),
+            imgSrc:getCookie('carChooseImg'),
+            deposit:getCookie('carChooseDeposit')
+        };
+
+        $('#rent-deposit').html(carInfo.deposit);
+        $('#rent-img').attr('src',carInfo.imgSrc);
+        $('#carType').val(carInfo.title);
+        $('#carID').val(carInfo.id);
+
+
+        $('#rent-price').html(carInfo.price);
+        var price=carInfo.price;
+        var deposit=carInfo.deposit;
+        count(1);
+    }
+    
+    function count(day) {
+        if(price){
+            var count=parseInt(day*price)+parseInt(deposit);
+            $('#rent-count').html(count);
+            $('#rent_time_').val(day);
+        }
+    }
+
+    //验证弹出
+    var dig={};
+    dig._btn=get.getClass('dig-btn')[0];
+    dig._mask=get.getClass('dig-mask')[0];;
+    dig._dig=get.getClass('dig')[0];
+    dig._tip=get.getClass('dig-tip')[0];
+
+    dig.closeFn=function () {
+        dig._dig.style.display='none';
+    } ;
+    dig.showFn=function (str) {
+
+        dig._dig.style.display='block';
+        dig._tip.innerHTML=str||'请补充信息完整';
+        setTimeout(dig.closeFn,1000);
+    } ;
+
+
+    var form=get.getID('form');
+    var _btn_main=get.getClass('btn-main')[0];
+
+    _btn_main.addEventListener('click',function () {
+
+
+        var cainp=$('#cainp').val();
+        if(cainp==''||cainp==null){dig.showFn('请选择入住日期');return;}
+
+        var dt=$('#dt').val();
+        if(dt==''||dt==null){dig.showFn('请选择离开日期');return;}
+
+        var carType=$('#carType').val();
+     //   if(carType==''||carType==null){dig.showFn('请选择车型');return;}
+
+
+        //验证电话
+
+        var tel=$('#tel').val();
+        var regTel=/^[0-9]{11}$/;
+        if(tel==''||tel==null){dig.showFn('请输入电话');return};
+        if(!regTel.test(tel)){dig.showFn('请输入正确的11位电话');return};
+
+
+
+    },false)
+
+</script>
+
+
+<script src="js/calendar.js"></script>
+<script>
+
+    var dateNow=new Date();
+
+
+    $('#showcainp').html('<span>'+dateNow.getFullYear()+'年</span>'+ '<span>'+(dateNow.getMonth()+1)+'月'+dateNow.getDate()+'日</span>');
+    $('#showdt').html('<span>'+dateNow.getFullYear()+'年</span>'+ '<span>'+(dateNow.getMonth()+1)+'月'+(dateNow.getDate()+1)+'日</span>');
+    $('#cainp').val(dateNow.getFullYear()+'-'+(dateNow.getMonth()+1)+'-'+dateNow.getDate());
+    $('#dt').val(dateNow.getFullYear()+'-'+(dateNow.getMonth()+1)+'-'+(dateNow.getDate()+1));
+
+    var date1=Math.floor(dateNow.getTime()/(24*3600*1000));
+    var date2=Math.floor(dateNow.getTime()/(24*3600*1000)+1);
+
+
+
+    $('#ca').calendar({
+        trigger: '#cainp',
+        zIndex: 999,
+        format: 'yyyy-mm-dd',
+        onSelected: function (view, date, data) {
+            console.log('event: onSelected');
+        },
+        onClose: function (view, date, data) {
+
+            if(Math.floor(date.getTime()/(24*3600*1000))+1<Math.floor(dateNow.getTime()/(24*3600*1000))){
+                dig.showFn('入住日期不能低于今日');
+                dig._mask.style.display='none';
+                $('#cainp').val('');
+                return
+            }
+
+            $('#showcainp').html('<span>'+date.getFullYear()+'年</span>'+ '<span>'+(date.getMonth()+1)+'月'+date.getDate()+'日</span>');
+            dig._mask.style.display='none';
+            date1=Math.floor(date.getTime()/(24*3600*1000))+1;
+
+            if(date2<=date1){
+                date2=Math.floor(date.getTime()/(24*3600*1000)+2);
+                $('#showdt').html('<span>'+date.getFullYear()+'年</span>'+ '<span>'+(date.getMonth()+1)+'月'+(date.getDate()+1)+'日</span>');
+                $('#dt').val(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate()+1));
+            }
+
+            var days=Math.floor(date2-date1);
+            $('#rent-time').html(days);
+            count(days);
+            console.log(date1 +" "  +date2  +"  "+ days);
+        }
+    });
+
+    $('#dd').calendar({
+        trigger: '#dt',
+        zIndex: 999,
+        format: 'yyyy-mm-dd',
+        onSelected: function (view, date, data) {
+            console.log('event: onSelected');
+
+        },
+        onClose: function (view, date, data) {
+
+            if(Math.floor(date.getTime()/(24*3600*1000))<date1){
+                dig.showFn('离开日期不能低于入住日期');
+                dig._mask.style.display='none';
+                $('#dt').val('');
+            }else {
+                $('#showdt').html('<span>'+date.getFullYear()+'年</span>'+ '<span>'+(date.getMonth()+1)+'月'+date.getDate()+'日</span>');
+                dig._mask.style.display='none';
+                date2=Math.floor(date.getTime()/(24*3600*1000))+1;
+                var days=Math.floor(date2-date1);
+                $('#rent-time').html(days);
+                count(days);
+
+                console.log(date1 +" "  +date2  +"  "+ days);
+
+            }
+
+
+        }
+    });
+
+    dig._mask.onclick=function () {
+        dig._mask.style.display='none';
+    };
+
+    $('#dd').css({'left':($(window).width()-280)/2,'top':($(window).height()-400)/2});
+    $('#ca').css({'left':($(window).width()-280)/2,'top':($(window).height()-400)/2});
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<section>
+	<ul class="admin_tab">
+		<li><a class="active">服务列表</a></li>
+		<li><a  href="{:U('Admin/Goods/serviceAddPage')}">服务添加</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+		<section>
+			<div class="page_title">
+				<h2 class="fl">生活服务列表</h2>
+			</div>
+			<table class="table">
+				<tr>
+					<th>服务ID</th>
+					<th>服务名称</th>
+					<th>服务图片</th>
+					<!-- <th>佣金(元)</th> -->
+					<th>定金(元)</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>添加时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='arr' item='v'>
+				<tr>
+					<td>{$v.service_id}</td>
+					<td style="text-align:left;">
+						<if condition='$v.pid eq 0 '>
+						┣{$v.service_name}
+						<else/>
+						&nbsp;&nbsp;{$v.deli}{$v.service_name}
+						</if>
+					</td>
+					<td>
+					<notempty name='v.service_image'>
+					<img src="__PUBLIC__/Uploads/{$v.service_image}" height="40">
+					</notempty>
+					</td>
+					<!-- <td>{$v.brokerage}</td> -->
+					<td>{$v.deposit}</td>
+					<td>
+					<switch name="v.isshow">
+					    <case value="1">是</case>
+					    <case value="0">否</case>
+					</switch>
+					</td>
+					
+					<td>{$v.order}</td>
+					<td>{$v.add_time|date="Y-m-d H:i:s",###}</td>
+					<td>
+					<notempty name='v.modify_time'>
+					{$v.modify_time|date="Y-m-d H:i:s",###}</td>
+					</notempty>
+					<td>
+					<a href="{:U('Admin/Goods/serviceModifyPage')}?service_id={$v.service_id}" class="inner_btn">修改</a>
+					<a href="{:U('Admin/Goods/serviceDelete')}?service_id={$v.service_id}&service_image={$v.service_image}" class="inner_btn2">删除</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<aside class="paging">
+				{$str}
+			</aside>
+		</section>
+	</div>
+
+</section>
+<script>
+$(document).ready(function() {
+	$('#service').addClass('active');
+});
+</script>

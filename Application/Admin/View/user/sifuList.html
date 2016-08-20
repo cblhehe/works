@@ -1,0 +1,56 @@
+<section>
+  <ul class="admin_tab">
+    <li><a class="active" >师傅列表</a></li>
+  </ul>
+  <!--tabCont1-->
+  <div class="admin_tab_cont" style="display:block;" id="tab1">
+    <section>
+      <table class="table">
+        <tr>
+          <th>师傅ID</th>
+          <th>姓名</th>
+          <th>身份证</th>
+          <th>地址</th>
+          <th>电话</th>
+          <th>服务内容</th>
+          <!-- <th>操作</th> -->
+
+        </tr>
+        <foreach name='arr' item='v'>
+        <tr>
+          <td>{$v.user_id}</td>
+          <td>{$v.true_name}</td>
+          <td>{$v.id_card}</td>
+          <td>{$v.address}</td>
+          <td>{$v.phone}</td>
+          <td>{$v.service_cate}</td>
+<!--           <td>
+          <switch name="v.is_lock">
+              <case value="0">正常</case>
+              <case value="1">拉黑</case>
+          </switch>
+          </td> -->
+          <!-- <td>
+          <switch name="v.is_lock">
+              <case value="0"><a href="{:U('Admin/Admin/modify')}?admin_id={$v.admin_id}" class="inner_btn">拉黑</a></case>
+              <case value="1"><a href="#" onclick='del({$v.admin_id})' class="inner_btn2">取消拉黑</a></case>
+          </switch>
+          
+          
+          </td> -->
+        </tr>
+
+        </foreach>
+      </table>
+      <aside class="paging">
+        {$str}
+      </aside>
+    </section>
+  </div>
+
+</section>
+<script>
+$(document).ready(function() {
+  $('#sifu').addClass('active');
+});
+</script>

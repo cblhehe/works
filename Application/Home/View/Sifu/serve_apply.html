@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>素叶联盟-生活服务申请</title>
+    <meta name="keywords" content="素叶联盟">
+    <meta name="description" content="素叶联盟">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/base.css">
+</head>
+<body style="background-color: #F5F3F3">
+<form action="#" id="form">
+<!--生活服务申请-->
+<div class="order-apply">
+    <div class="order-apply-img desimg">
+        <div class="desimg-mask" id="desmask">
+            请上传图片
+        </div>
+        <input type="file" id="file" data-index="0">
+        <img src="" alt="" id="showImg">
+        <label for="file"><i class="file-icon"></i></label>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>电话：</span>
+        </div>
+        <div class="order-apply-inp ub-f1 ub">
+            <input type="number" value="18080662068" class="ub-f1" id="tel">
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>区域-街道/大厦：</span>
+        </div>
+        <div class="order-apply-inp ub ub-f1">
+            <i class="order-apply-addr-icon"></i>
+            <input type="text" placeholder="如：武侯区环球中心" class="ub ub-f1" id="village">
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>小区-楼号-门牌号：</span>
+        </div>
+        <div class="order-apply-inp ub-f1 ub">
+            <input type="text" placeholder="如：米勒阳光2栋4048" class="ub-f1" id="floor">
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-inp order-apply-des ub-f1 ub">
+            <span >描述问题：</span>
+            <textarea  class=" ub ub-f1" id="des" placeholder="请描述问题"></textarea>
+        </div>
+    </div>
+    <div class="order-apply-item ub">
+        <div class="order-apply-intro">
+            <span>定金：</span>
+        </div>
+        <div class="order-apply-inp ub-f1 ub">
+            <input type="number" placeholder="人民币（元）" class="ub ub-f1" id="earnest">
+        </div>
+    </div>
+</div>
+</form>
+<footer class="position-fixed-b" style="margin-bottom: 20px">
+    <a href="javascript:;"><button class="btn-main">申请服务</button></a>
+</footer>
+
+<!-- 弹出层 -->
+<section>
+    <div class="dig-mask" style="background-color: transparent;display: none"></div>
+    <div class="dig" style="height: auto;border-radius: 5px;top: 190px;background-color: #FA5750;display: none">
+        <div class="dig-content" style="height: 40px;">
+            <p class="dig-tip" style="color:#fff">提示内容</p>
+            <!--<button class="dig-btn">点击确定</button>-->
+        </div>
+    </div>
+</section>
+<div id="allmap" style="display: none"></div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5wzKed6iTctwZW1glFrvrIpM"></script>
+<script>
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+    var file=get.getID('file');
+    var showImg=get.getID('showImg');
+    var desmask=get.getID('desmask');
+
+    //预览
+    file.onchange=function () {
+        var files = this.files;
+        var mingurl=window.webkitURL.createObjectURL(files[0])|| window.URL.createObjectURL(files[0]);
+        showImg.src=mingurl;
+        this.value="";
+        this.setAttribute('data-index','1');
+        desmask.innerHTML='';
+    };
+
+    //验证弹出
+    var dig={};
+    dig._btn=get.getClass('dig-btn')[0];
+    dig._mask=get.getClass('dig-mask')[0];;
+    dig._dig=get.getClass('dig')[0];
+    dig._tip=get.getClass('dig-tip')[0];
+
+    dig.closeFn=function () {
+        dig._mask.style.display='none';
+        dig._dig.style.display='none';
+    } ;
+    dig.showFn=function (str) {
+        dig._mask.style.display='block';
+        dig._dig.style.display='block';
+        dig._tip.innerHTML=str||'请补充信息完整';
+        setTimeout(dig.closeFn,1000);
+    } ;
+
+
+    // dig._btn.addEventListener('click',dig.closeFn,false);
+    dig._mask.addEventListener('click',dig.closeFn,false);
+
+    var form=get.getID('form');
+    var _btn_main=get.getClass('btn-main')[0];
+
+    _btn_main.addEventListener('click',function () {
+
+        //验证图片
+        var file_index=file.getAttribute('data-index');
+        if(file_index==0){dig.showFn('请上传图片说明');return};
+
+        //验证电话
+
+        var tel=get.getID('tel').value;
+        var regTel=/^[0-9]{11}$/;
+        if(tel==''||tel==null){dig.showFn('请输入电话');return};
+        if(!regTel.test(tel)){dig.showFn('请输入正确的11位电话');return};
+
+        var village=get.getID('village').value;
+        if(village==''||village==null){dig.showFn('请填写区域-街道/大厦');return};
+
+        var floor=get.getID('floor').value;
+        if(floor==''||floor==null){dig.showFn('请填写小区-楼号-门牌号');return};
+
+        var des=get.getID('des').value;
+        if(des==''||des==null){dig.showFn('请描述问题');return};
+        var earnest=get.getID('earnest').value;
+        if(earnest==''||earnest==null){dig.showFn('请输入定金金额'); return;}
+        if(earnest<=0){dig.showFn('定金金额必须为正数'); return;}
+        form.submit();
+    },false);
+
+
+</script>
+<script>
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(116.331398,39.897445);
+    map.centerAndZoom(point,64);
+    var geoc = new BMap.Geocoder();
+
+    //浏览器定位
+
+    /*  var geolocation = new BMap.Geolocation();
+     geolocation.getCurrentPosition(function(r){
+     if(this.getStatus() == BMAP_STATUS_SUCCESS){
+     var mk = new BMap.Marker(r.point);
+     map.addOverlay(mk);
+     map.panTo(r.point);
+     // alert('您的位置：'+r.point.lng+','+r.point.lat);
+     }
+     else {
+     alert('failed'+this.getStatus());
+     }
+     },{enableHighAccuracy: true})*/
+
+    //IP定位
+
+    function myFun(result){
+        var cityName = result.name;
+        map.setCenter(cityName);
+        var pt=result.center;
+
+        geoc.getLocation(pt, function(rs){
+            var addComp = rs.addressComponents;
+            console.log(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+            get.getID('village').value=addComp.district+addComp.street;
+        });
+    }
+    var myCity = new BMap.LocalCity();
+    myCity.get(myFun);
+
+</script>
+</body>
+</html>

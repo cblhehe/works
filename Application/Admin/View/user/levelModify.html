@@ -1,0 +1,94 @@
+<section>
+  <ul class="admin_tab">
+    <li><a href="{:U('Admin/User/levelList')}">会员等级列表</a></li>
+    <li><a  href="{:U('Admin/User/levelAdd')}">会员等级添加</a></li>
+    <li><a  class="active">会员等级修改</a></li>
+    
+  </ul>
+  <!--tabCont1-->
+  <div class="admin_tab_cont" style="display:block;" id="tab1">
+    <ul class="ulColumn2">
+      <li>
+        <span class="item_name" style="width:120px;">等级名称：</span>
+        <input type="text" class="textbox textbox_295 content" name="level_name" id="level_name" value="{$re.level_name}" />
+        <input type="hidden" name="oldName" value="{$re.level_name}" id="oldName">
+        <span class="errorTips" id="t1">等级名称不能为空！</span>
+        <span class="errorTips" id="t11">该等级名称已存在！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:120px;">消费额度：</span>
+        <input type="text" class="textbox textbox_295 content" name="amount" id="amount" value="{$re.amount}"/>
+        <span> 设置会员等级所需要的消费额度</span>
+        <span class="errorTips" id="t2">等级名称不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:120px;">折扣率：</span>
+        <input type="text" class="textbox textbox_295 content" name="discount" id="discount"  value="{$re.discount}"/>%
+        <span>表示该会员等级的用户可以以商品原价的百分之几购买</span>
+        <span class="errorTips" id="t3">折扣率不能为空！</span>
+      </li>
+      <li>
+        <span class="item_name" style="width:120px;"></span>
+        <input type="submit" class="link_btn" id="submit" value="提交" />
+      </li>
+    </ul>
+  </div>
+
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#level').addClass('active');
+
+//  提交前
+$('#submit').click(function(){
+  if ($.trim($('#level_name').val())=='') {
+    $('#t1').show();
+    $('#level_name').focus();
+    return false;
+  }else{
+    $('#t1').hide();
+  }
+  if ($.trim($('#amount').val())=='') {
+    $('#t2').show();
+    $('#amount').focus();
+    return false;
+  }else{
+    $('#t2').hide();
+  }
+  if ($.trim($('#discount').val())=='') {
+    $('#t3').show();
+    $('#discount').focus();
+    return false;
+  }else{
+    $('#t3').hide();
+  }
+
+    var params = $("input").serialize();  
+    var url = "{:U('Admin/User/reSave')}?level_id={$re.level_id}";  
+    $.ajax({  
+        type: "post",  
+        url: url,  
+        dataType: "json",  
+        data: params,  
+        success: function(data){  
+          if (data=='success') {
+             alert('修改成功!');
+            window.location.href="{:U('Admin/User/levelList')}";
+          }else if(data=='exist'){
+            $('#t11').show();
+            setTimeout(function(){$('#t11').hide();},2000);
+            return false;
+          }else{
+            alert('修改失败！');
+          }
+        }  
+      });  
+  
+})
+
+});
+
+
+
+</script>

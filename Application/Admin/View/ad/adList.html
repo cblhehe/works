@@ -1,0 +1,81 @@
+<section>
+	<ul class="admin_tab">
+		<li><a class="active">广告列表</a></li>
+		<li><a  href="{:U('Admin/Ad/adAddPage')}">广告添加</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+		<section>
+			<div class="page_title">
+				<h2 class="fl">广告列表</h2>
+			</div>
+			<table class="table">
+				<tr>
+					<th>广告ID</th>
+					<th>广告名称</th>
+					<th>广告位置</th>
+					<th>广告图片</th>
+					<th>广告链接</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>点击数</th>
+					<th>添加时间</th>
+					<th>上线时间</th>
+					<th>下线时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='arr' item='v'>
+				<tr>
+					<td>{$v.ad_id}</td>
+					<td>{$v.ad_name}</td>
+					<td>
+					<switch name="v.pid">
+					    <case value="1">住宿首页</case>
+					    <case value="2">服务首页</case>
+					</switch>
+					</td>
+					<td><img src="__PUBLIC__/Uploads/{$v.ad_image}" height="40"></td>
+					<td>{$v.ad_link}</td>
+					<td>
+					<switch name="v.isshow">
+					    <case value="1">是</case>
+					    <case value="0">否</case>
+					</switch>
+					</td>
+					<td>{$v.order}</td>
+					<td>{$v.click_count}</td>
+					<td>{$v.add_time|date="Y-m-d H:i:s",###}</td>
+					<td>{$v.start_time|date="Y-m-d",###}</td>
+					<td>
+					<if condition='$v.end_time eq 0'>
+					永不下线
+					<else/>
+						{$v.end_time|date="Y-m-d",###}
+					</if>
+					</td>
+					<td>
+					<notempty name='v.modify_time'>
+					{$v.modify_time|date="Y-m-d H:i:s",###}</td>
+					</notempty>
+					<td>
+					<a href="{:U('Admin/Ad/adModifyPage')}?ad_id={$v.ad_id}" class="inner_btn" >修改</a>
+					<a href="{:U('Admin/Ad/adDelete')}?ad_id={$v.ad_id}&ad_image={$v.ad_image}" class="inner_btn2" >删除</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<aside class="paging">
+				{$str}
+			</aside>
+		</section>
+	</div>
+
+</section>
+<script>
+$(document).ready(function() {
+	$('#ad').addClass('active');
+});
+
+</script>

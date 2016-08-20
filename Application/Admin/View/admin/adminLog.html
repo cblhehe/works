@@ -1,0 +1,59 @@
+<section>
+	<ul class="admin_tab">
+		<li><a  class="active">管理员日志</a></li>
+	</ul>
+	
+	<!--tabCont2-->
+	<div class="admin_tab_cont" style="display:block;" id="tab2">
+		<section>
+			<table class="table">
+				<tr id="head">
+					<th>ID</th>
+					<th>管理员</th>
+					<th>管理员操作</th>
+					<th>登录ip</th>
+					<th>操作时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='arr' item='v'>
+				<tr>
+					<td>{$v.log_id}</td>
+					<td>{$v.admin_name}</td>
+					<td>{$v.admin_action}</td>
+					<td>{$v.log_ip}</td>
+					<td>{$v.log_time|date="Y-m-d H:i:s",###}</td>
+					<td>
+					<a href="#" onclick='del({$v.log_id})' class="inner_btn2">删除</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<aside class="paging" id="pageStr">
+				{$str}
+			</aside>
+		</section>
+	</div>
+	
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#log').addClass('active');
+})
+
+function del(log_id){
+	$.ajax({
+        type:'post',
+        url:"{:U('Admin/Admin/logDel')}?log_id="+log_id,
+        dataType:'json',
+        success:function(data){ 
+          	if (data=='success') {
+          		alert('删除成功！');
+          		window.location.href="{:U('Admin/Admin/adminLog')}";
+          	}else{
+          		alert('删除失败！');                                          
+        	}                          
+        }
+    })
+}
+</script>

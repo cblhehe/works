@@ -1,0 +1,131 @@
+<section>
+	<ul class="admin_tab">
+		<li><a href="{:U('Admin/Ad/adList')}">广告列表</a></li>
+		<li><a  href="{:U('Admin/Ad/adAddPage')}">广告添加</a></li>
+		<li><a  class="active">服务修改</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+	<form action="{:U('Admin/Ad/adSave')}?ad_id={$re.ad_id}"  method="post" enctype="multipart/form-data">
+		<ul class="ulColumn2">
+			<li>
+				<span class="item_name" style="width:120px;">广告名称：</span>
+				<input type="text" class="textbox textbox_295 content" name="ad_name" id="ad_name" value="{$re.ad_name}" />
+				<span class="errorTips" id="t1">广告名称不能为空！</span>
+			</li>
+			<li>
+		        <span class="item_name" style="width:120px;">广告位置：</span>
+		        <select class="select" name="pid" id="pid">
+		         	<option value="0">请选择广告位</option>
+		         	<option value="1" <if condition="$re.pid eq 1 ">selected='selected'</if>>住宿首页</option>
+		         	<option value="2" <if condition="$re.pid eq 2 ">selected='selected'</if>>服务首页</option>
+		         	<span class="errorTips" id="t2">请选择广告位置！</span>
+		        </select>
+	       </li>
+			<li>
+		        <span class="item_name" style="width:120px;">是否显示</span>
+		        <label class="single_selection"><input type="radio" name="isshow" value="1" <if condition="$re.isshow eq 1 ">checked='checked'</if> />是</label>
+		        <label class="single_selection"><input type="radio" name="isshow" value="0" <if condition="$re.isshow eq 0 ">checked='checked'</if>/>否</label>
+	       </li>
+			<li>
+				<span class="item_name" style="width:120px;">排序：</span>
+				<input type="text" class="textbox textbox_70 content" name="order" id="order" value="{$re.order}"/>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">上线时间：</span>
+				<input type="datetime" class="textbox textbox_175 datePicker content" name="start_time" id="start_time" onclick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" value="{$re.start_time|date='Y-m-d',###}"/>
+				<span class="errorTips" id="t3">上线时间不能为空！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">下线时间：</span>
+				<input type="datetime" class="textbox textbox_175 datePicker content" name="end_time" id="end_time" onclick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" value="<if condition='$re.end_time eq 0'>0<else/>{$re.end_time|date="Y-m-d",###}
+					</if>"/>
+				<span style="color:gray;font-size:12px;">备注：下线时间默认为0，代表永不下线！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">广告链接：</span>
+				<input type="datetime" class="textbox textbox_295 content" name="ad_link" id="ad_link" placeholder="格式：http://www.baidu.com" value="{$re.ad_link}"/>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">广告图片：</span>
+				<label class="uploadImg">
+				<input type="file" name="ad_image" id="ad_image"  />
+				<span>上传图片</span>
+				</label>
+				<img src='__PUBLIC__/Uploads/{$re.ad_image}' id='img' height='82' alt='' style='margin:-22px 10px 18px 10px;' />
+				<input type="hidden" name="oldImg" value="{$re.ad_image}">	
+				<span class="errorTips" id="t4">广告图片不能为空！</span>
+				<p style="padding:10px 0 0 130px;color:gray;font-size:12px;">建议图片尺寸：宽度/高度=5:3;单位：px.</p>
+			</li>
+
+			<li>
+				<span class="item_name" style="width:120px;"></span>
+				<input type="submit" class="link_btn" id="submit" value="提交" />
+			</li>
+		</ul>
+	</form>
+	</div>
+
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#ad').addClass('active');
+
+
+//上传图片预览
+$("#ad_image").change(function(){
+    var objUrl = getObjectURL(this.files[0]) ;
+    if (objUrl) {
+    	$("#img").attr("src",objUrl).show();
+    }
+}) ; 
+ 
+function getObjectURL(file) {
+		var url = null ; 
+		if (window.createObjectURL!=undefined) { // basic
+			url = window.createObjectURL(file) ;
+		} else if (window.URL!=undefined) { // mozilla(firefox)
+			url = window.URL.createObjectURL(file) ;
+		} else if (window.webkitURL!=undefined) { // webkit or chrome
+			url = window.webkitURL.createObjectURL(file) ;
+		}
+		return url ;
+}
+
+//	提交前
+$('#submit').click(function(){
+	if ($.trim($('#ad_name').val())=='') {
+		$('#t1').show();
+		$('#ad_name').focus();
+		return false;
+	}else{
+		$('#t1').hide();
+	}
+	if ($.trim($('#pid').val())==0) {
+		$('#t2').show();
+		return false;
+	}else{
+		$('#t2').hide();
+	}
+	if ($.trim($('#start_time').val())=='') {
+		$('#t3').show();
+		return false;
+	}else{
+		$('#t3').hide();
+	}
+	if ($.trim($("#img").attr("src"))=='') {
+		$('#t4').show();
+		return false;
+	}else{
+		$('#t4').hide();
+	}
+	
+})
+
+
+});
+
+
+</script>

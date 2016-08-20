@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>申请成为师傅</title>
+    <meta name="keywords" content="素叶联盟">
+    <meta name="description" content="素叶联盟">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/base.css">
+</head>
+<body>
+<form action="#" id="form">
+<!--师傅信息-->
+<section>
+    <div class="title-hd master">
+
+       <span class="title-intro">
+           请填写您的真实信息
+       </span>
+    </div>
+  <div class="master-info-inp-item">
+      <div class="master-info-inp-item-intro ub">
+         <div>
+             <span>姓名</span>
+         </div>
+          <input type="text" class="ub  ub-f1" id="userName">
+      </div>
+  </div>
+    <div class="master-info-inp-item">
+        <div class="master-info-inp-item-intro ub">
+            <div>
+                <span>电话</span>
+            </div>
+            <input type="number" class="ub  ub-f1" id="tel">
+        </div>
+    </div>
+    <div class="master-info-inp-item">
+        <div class="master-info-inp-item-intro ub">
+            <div>
+                <span>身份证</span>
+            </div>
+            <input type="text" class="ub  ub-f1" id="idCard">
+        </div>
+    </div>
+</section>
+
+<!--师傅业务范围-->
+<section>
+    <div class="title-hd master">
+       <span class="title-intro">
+           请选择您的服务项目（可多选）
+       </span>
+    </div>
+    <ul class="business-list clear">
+        <li>
+            <input type="checkbox" name="business" value="电视" id="tv">
+            <label for="tv">电视</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="冰箱" id="bx">
+            <label for="bx">冰箱</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="空调" id="kt">
+            <label for="kt">空调</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="电脑" id="computer">
+            <label for="computer">电脑</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="热水器" id="rsq">
+            <label for="rsq">热水器</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="洗衣机" id="xyj">
+            <label for="xyj">洗衣机</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="淋浴" id="ly">
+            <label for="ly">淋浴</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="马桶" id="mt">
+            <label for="mt">马桶</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="油烟机" id="yyj">
+            <label for="yyj">油烟机</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="灯具" id="dj">
+            <label for="dj">灯具</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="燃气灶" id="rqz">
+            <label for="rqz">燃气灶</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="电路" id="dl">
+            <label for="dl">电路</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="开锁换锁" id="kshs">
+            <label for="kshs">开锁换锁</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="搬家" id="bj">
+            <label for="bj">搬家</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="疏通管道" id="stgd">
+            <label for="stgd">疏通管道</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="家政服务" id="jzfw">
+            <label for="jzfw">家政服务</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="租车" id="zc">
+            <label for="zc">租车</label>
+        </li>
+        <li>
+            <input type="checkbox" name="business" value="修车拖车" id="xctc">
+            <label for="xctc">修车拖车</label>
+        </li>
+
+    </ul>
+</section>
+</form>
+<footer class="position-fixed-b" style="margin-bottom: 20px">
+    <a href="javascript:;">
+        <button class="btn-main">申请成为服务商</button>
+    </a>
+</footer>
+
+<!-- 弹出层 -->
+<section>
+    <div class="dig-mask" style="background-color: transparent;display: none"></div>
+    <div class="dig" style="height: auto;border-radius: 5px;top: 190px;background-color: #FA5750;display: none">
+        <div class="dig-content" style="height: 40px;">
+            <p class="dig-tip" style="color:#fff">提示内容</p>
+            <!--<button class="dig-btn">点击确定</button>-->
+        </div>
+    </div>
+</section>
+
+<script>
+
+    window.onload=function () {
+
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+
+        var dig={};
+        dig._btn=get.getClass('dig-btn')[0];
+        dig._mask=get.getClass('dig-mask')[0];;
+        dig._dig=get.getClass('dig')[0];
+        dig._tip=get.getClass('dig-tip')[0];
+
+        dig.closeFn=function () {
+            dig._mask.style.display='none';
+            dig._dig.style.display='none';
+        } ;
+        dig.showFn=function (str) {
+            dig._mask.style.display='block';
+            dig._dig.style.display='block';
+            dig._tip.innerHTML=str||'请补充信息完整';
+            setTimeout(dig.closeFn,1000);
+        } ;
+
+
+        // dig._btn.addEventListener('click',dig.closeFn,false);
+        dig._mask.addEventListener('click',dig.closeFn,false);
+
+        var form=get.getID('form');
+        var _btn_main=get.getClass('btn-main')[0];
+
+        _btn_main.addEventListener('click',function () {
+            var userName=get.getID('userName').value;
+            var reg=/^[\u4e00-\u9fa5]{2,9}$/;
+            if(userName==''||userName==null){dig.showFn('请输入姓名');return};
+            if(!reg.test(userName)){dig.showFn('请输入正确的姓名');return};
+
+            var tel=get.getID('tel').value;
+            var regTel=/^[0-9]{11}$/;
+            if(tel==''||tel==null){dig.showFn('请输入电话');return};
+            if(!regTel.test(tel)){dig.showFn('请输入正确的11位电话');return};
+            var idCard=get.getID('idCard').value;
+            var  regID = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
+            if(idCard==''||idCard==null){dig.showFn('请输入身份证号码');return};
+            if(!regID.test(idCard)){dig.showFn('请输入正确的身份证号码');return};
+
+            var business=document.getElementsByName('business');
+            var  businessKey=0;
+            business.forEach(function (e, i) {
+                if(e.checked){ businessKey=1;}
+            });
+            if(businessKey==0){dig.showFn('请选择业务范围');return}
+
+        },false);
+
+        form.submit();
+
+    }
+
+</script>
+</body>
+</html>

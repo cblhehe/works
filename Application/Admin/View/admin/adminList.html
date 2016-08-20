@@ -1,0 +1,71 @@
+<section>
+	<ul class="admin_tab">
+		<li><a  class="active">管理员列表</a></li>
+		<li><a  href="{:U('Admin/Admin/admin')}" >添加管理员</a></li>
+	</ul>
+	
+	<!--tabCont2-->
+	<div class="admin_tab_cont" style="display:block;" id="tab2">
+		<section>
+			<table class="table">
+				<tr id="head">
+					<th>管理员ID</th>
+					<th>管理员账号</th>
+					<th>管理员密码</th>
+					<th>权限</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='arr' item='v'>
+				<tr>
+					<td>{$v.admin_id}</td>
+					<td>{$v.username}</td>
+					<td>{$v.password}</td>
+					<td>
+					<if condition='$v.role eq 1'>
+					超级管理员
+					<else/>
+					普通管理员
+					</if>
+					</td>
+					<td>
+					<notempty name='v.add_time'>
+					{$v.add_time|date="Y-m-d H:i:s",###}
+					</notempty>
+					</td>
+					<td>
+					<a href="{:U('Admin/Admin/modify')}?admin_id={$v.admin_id}" class="inner_btn">修改</a>
+					<a href="#" onclick='del({$v.admin_id})' class="inner_btn2">删除</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<aside class="paging" id="pageStr">
+				{$str}
+			</aside>
+		</section>
+	</div>
+	
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#admin').addClass('active');
+})
+
+function del(admin_id){
+	$.ajax({
+        type:'post',
+        url:"{:U('Admin/Admin/del')}?admin_id="+admin_id,
+        dataType:'json',
+        success:function(data){ 
+          	if (data=='success') {
+          		alert('删除成功！');
+          		window.location.href="{:U('Admin/Admin/adminList')}";
+          	}else{
+          		alert('删除失败！');                                          
+        	}                          
+        }
+    })
+}
+</script>

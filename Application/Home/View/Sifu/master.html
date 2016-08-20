@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>师傅接单</title>
+    <meta name="keywords" content="素叶联盟">
+    <meta name="description" content="素叶联盟">
+    <link rel="stylesheet" href="__PUBLIC__/home/css/base.css">
+</head>
+<body>
+<!--个人中心头像-->
+<header>
+    <div class="photo-wrap bg-main" style="margin-bottom: 86px">
+       <div class="master-info clear">
+           <div class="master-info-item">
+               <a href="{:U('Order/master_myorder_list')}">
+                   <p>未完成订单</p>
+                   <span>120</span>
+               </a>
+           </div>
+           <div class="master-info-item">
+               <img src="__PUBLIC__/home/img/master_icon.png" alt="">
+               <span class="master-name">张启山</span>
+           </div>
+           <div class="master-info-item">
+               <a href="{:U('Order/master_myorder_list_end')}">
+                   <p>已完成订单</p>
+                   <span>89</span>
+               </a>
+           </div>
+       </div>
+    </div>
+    <div class="master-addr">
+        <i class="addr-icon"></i>
+        <span>四川省成都市双流县中和镇中和大道一号</span>
+    </div>
+</header>
+
+<!--师傅业务范围-->
+<section>
+ <ul class="business-list clear">
+     <li>
+         <input type="checkbox" name="business" value="电视" id="tv">
+         <label for="tv">电视</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="冰箱" id="bx">
+         <label for="bx">冰箱</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="空调" id="kt">
+         <label for="kt">空调</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="电脑" id="computer">
+         <label for="computer">电脑</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="热水器" id="rsq">
+         <label for="rsq">热水器</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="洗衣机" id="xyj">
+         <label for="xyj">洗衣机</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="淋浴" id="ly">
+         <label for="ly">淋浴</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="马桶" id="mt">
+         <label for="mt">马桶</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="油烟机" id="yyj">
+         <label for="yyj">油烟机</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="灯具" id="dj">
+         <label for="dj">灯具</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="燃气灶" id="rqz">
+         <label for="rqz">燃气灶</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="电路" id="dl">
+         <label for="dl">电路</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="开锁换锁" id="kshs">
+         <label for="kshs">开锁换锁</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="搬家" id="bj">
+         <label for="bj">搬家</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="疏通管道" id="stgd">
+         <label for="stgd">疏通管道</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="家政服务" id="jzfw">
+         <label for="jzfw">家政服务</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="租车" id="zc">
+         <label for="zc">租车</label>
+     </li>
+     <li>
+         <input type="checkbox" name="business" value="修车拖车" id="xctc">
+         <label for="xctc">修车拖车</label>
+     </li>
+     <li>
+         <label id="more">更多服务</label>
+     </li>
+ </ul>
+</section>
+
+<footer class="position-fixed-b" style="margin-bottom: 20px">
+    <a href="serve_list.html">
+        <button class="btn-main">开始接单</button
+    </a>
+</footer>
+
+<script>
+    var get={
+        getID:function (id) {
+            return document.getElementById(id);
+        },
+        getClass:function (cls) {
+            return document.getElementsByClassName(cls);
+        }
+    };
+
+    var photo_wrap=get.getClass('photo-wrap')[0];
+    var pw=photo_wrap.offsetWidth;
+    photo_wrap.style.height=pw*.4+'px';
+
+
+
+
+</script>
+</body>
+</html>

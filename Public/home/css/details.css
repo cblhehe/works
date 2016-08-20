@@ -1,0 +1,186 @@
+.icon_topShare{background: url(../img/diary_share.png) no-repeat center;background-size: 15px 17px;width: 31px;height: 44px;display: inline-block;vertical-align: middle;position: absolute;right: 46px;top: 0px;}
+.detail_top{position: relative;}
+.detail_top img{width: 100%;}
+.detail_price{position: absolute;text-align: center;padding: 0 12px;background-color: #000;opacity: 0.8; height: 42px; line-height: 42px;display: inline-block; font-size: 14px; color: #fff;bottom: 0px;left: 0px;}
+.detail_price em{font-size: 30px;}
+.detail_off,.detail_data{height: 42px; line-height: 40px; background-color: #FEF7F8; color: #f05b72;text-align: center;display: -webkit-box;display: -ms-flexbox;display: flex;}
+.detail_off span{-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
+.detail_data{margin: 10px 0;line-height: 18px;}
+.icon_7_2,.icon_30_2,.icon_tejia{background: url(../img/icon_7_2.png) no-repeat center;background-size: 17px 21px;width:17px;height:21px;display: inline-block;vertical-align: middle;margin-right: 10px;}
+.icon_30_2{background: url(../img/icon_30_2.png) no-repeat center;background-size: 17px 21px;}
+.icon_tejia{background: url(../img/icon_tejia.png) no-repeat center;background-size: 17px 21px;}
+.detail_con{background: #fff;margin:10px 10px 0px;border-radius: 4px;-webkit-border-radius: 4px;}
+.center_div{text-align: center;}
+.h2_title{font-size: 14px; color: #333;padding: 10px;line-height: 24px;}
+.icon_div{color: #999;padding: 3px 0 10px;}
+.icon_div span{display: inline-block;height: 18px; vertical-align: middle;margin: 0 4px 3px 4px;}
+.icon_div span i{ display:inline-block; margin-right:3px; vertical-align:-1px;}
+.icon_yz{background: url(../img/icon_yz.png) no-repeat center;background-size: 18px 13px;}
+.icon_sp{background: url(../img/icon_sp.png) no-repeat center;background-size: 18px 15px;}
+.icon_sd{background: url(../img/icon_sd.png) no-repeat center;background-size: 13px 18px;}
+.icon_dp{background: url(../img/icon_dp.png) no-repeat center;background-size: 15px 18px;margin:0;}
+.img_fd{width: 60px;height: 60px; border-radius: 30px;-webkit-border-radius: 30px;}
+.fd_name{display:block;font-size: 14px;color: #333;padding: 5px 0;}
+.span_999{color: #999;display: block;}
+.btn_detail{background: url(../img/icon_chat.png) no-repeat 13px center;background-size: 18px 16px;display: inline-block; width:63px;height: 30px;line-height: 30px; border: solid 1px #F05B72; border-radius: 3px;-webkit-border-radius: 3px;padding-left:41px;color: #f05b72;margin: 15px 0 0 0;text-align: left; font-size: 12px;}
+.room_infor{border-top: solid 1px #eeeeee;}
+.infors_ul{padding: 5px 10px 5px 42px;}
+.infors_ul li{padding: 10px 10px 10px 45px;}
+.infors_ul li span{width: 30px;height: 30px; display: inline-block;margin-left: -45px; vertical-align: top;}
+.icon_room_2{background: url(../img/icon_room_2.png) no-repeat;background-size: 30px 30px;}
+.icon_user{background: url(../img/icon_user.png) no-repeat;background-size: 30px 30px;}
+.icon_bed{background: url(../img/icon_bed.png) no-repeat;background-size: 30px 30px;}
+.infors_ul li p{display: inline-block;margin: -4px 0 0 14px;line-height: 18px;color: #999;}
+.infors_ul li em{font-size: 14px;color: #333;display: block;}
+.infor_colunm{border-top: solid 1px #eeeeee;padding:15px 10px 0px;}
+.p_center{text-align: center;font-size:14px; color: #999;}
+.title_16{font-size: 16px;color: #333;display: block;margin-bottom: 5px;}
+.title_12{font-size: 12px; color: #333;margin-bottom:10px;display: block;}
+.p_left{font-size: 14px;line-height: 23px;}
+.font14{font-size: 14px!important;}
+.font10{font-size: 10px!important;}
+.icon_file{background: url(../img/icon_file.png) no-repeat 5px center;background-size: 16px 16px;padding-left: 28px; width: 76px;}
+.icon_earth{background: url(../img/icon_earth.png) no-repeat 5px center;background-size: 16px 16px;padding-left: 28px; width: 76px;}
+.icon_paper{background: url(../img/icon_paper.png) no-repeat 7px center;background-size: 14px 16px;padding-left: 28px; width: 76px;}
+.icon_check{background: url(../img/icon_check.png) no-repeat 5px center;background-size: 16px 16px;padding-left: 28px; width: 76px;}
+.icon_book{background: url(../img/icon_book.png) no-repeat 5px center;background-size: 14px 16px;padding-left: 28px; width: 76px;}
+.map_div{position: relative;}
+.map_div img{width: 100%;}
+.map_p{position: absolute;margin:0; background-color: #000;opacityT:0.4;background-color: rgba(0,0,0,0.4);line-height: 18px;padding: 3px 8px; color: #fff; -webkit-border-radius: 3px;border-radius: 6px;bottom: 13px;}
+.room_pic{width: 100%;}
+.ul_colunm{font-size: 14px;color: #999;}
+.ul_colunm li{border-bottom: solid 1px #eeeeee; height: 38px;line-height: 38px;}
+.line_2{line-height: 15px;float: right;color: #333;padding-top: 4px;text-align: right;}
+.line_i{color: #999;font-size: 10px;}
+.ul_colunm li em{display: inline-block;width:42px; height: 23px;vertical-align: middle;}
+.icon_net{background: url(../img/icon_net.png) no-repeat left center;background-size: 23px 23px;}
+.icon_bath{background: url(../img/icon_bath.png) no-repeat left center;background-size: 23px 21px;}
+.icon_tv{background: url(../img/icon_tv.png) no-repeat left center;background-size: 23px 21px;}
+.icon_snow{background: url(../img/icon_snow.png) no-repeat left center;background-size: 23px 22px;}
+.icon_sun{background: url(../img/icon_sun.png) no-repeat left center;background-size: 23px 23px;}
+.icon_sheet{background: url(../img/icon_sheet.png) no-repeat left center;background-size: 21px 23px;}
+.icon_smoke{background: url(../img/icon_smoke.png) no-repeat left center;background-size: 23px 13px;}
+.icon_pc{background: url(../img/icon_pc.png) no-repeat left center;background-size: 23px 19px;}
+.icon_tv2{background: url(../img/icon_tv2.png) no-repeat left center;background-size: 23px 22px;}
+.icon_water{background: url(../img/icon_water.png) no-repeat left center;background-size: 22px 19px;}
+.icon_tea{background: url(../img/icon_tea.png) no-repeat left center;background-size: 21px 22px;}
+.icon_plane{background: url(../img/icon_plane.png) no-repeat left center;background-size: 22px 20px;}
+.icon_brash{background: url(../img/icon_brash.png) no-repeat left center;background-size: 22px 6px;}
+.icon_shoes{background: url(../img/icon_shoes.png) no-repeat left center;background-size: 22px 22px;}
+.icon_zhi{background: url(../img/icon_zhi.png) no-repeat left center;background-size: 22px 19px;}
+.icon_wash{background: url(../img/icon_wash.png) no-repeat left center;background-size: 22px 22px;}
+.icon_washB{background: url(../img/icon_washB.png) no-repeat left center;background-size: 17px 22px;}
+.icon_fridge{background: url(../img/icon_fridge.png) no-repeat left center;background-size: 17px 22px;}
+.icon_washM{background: url(../img/icon_washM.png) no-repeat left center;background-size: 19px 22px;}
+.icon_addP{background: url(../img/icon_addP.png) no-repeat left center;background-size: 17px 22px;}
+.icon_bathtub{background: url(../img/icon_bathtub.png) no-repeat left center;background-size: 21px 12px;}
+.icon_lift{background: url(../img/icon_lift.png) no-repeat left center;background-size: 22px 21px;}
+.icon_pet{background: url(../img/icon_pet.png) no-repeat left center;background-size: 22px 18px;}
+.icon_cake{background: url(../img/icon_cake.png) no-repeat left center;background-size: 22px 22px;}
+.icon_key{background: url(../img/icon_key.png) no-repeat left center;background-size: 22px 12px;}
+.icon_park{background: url(../img/icon_park.png) no-repeat left center;background-size: 22px 22px;}
+.icon_noS{background: url(../img/icon_noS.png) no-repeat left center;background-size: 23px 23px;}
+.color_ccc{color: #ccc!important;}
+.order_btn{height: 44px;line-height: 44px;text-align: center;background-color: #F05B72;font-size: 16px;color: #fff;display: block;margin-top: 7px;clear: both;bottom:0; width: 100%;}
+.icon_triLine{background: url(../img/icon_triLine.png) no-repeat center;background-size:21px 21px;width:21px;height:21px;display: inline-block;vertical-align: middle;margin-right: 10px;}
+.bg_gray{background-color: #959EA7;}
+.column_intro li{display: -webkit-box;display: -ms-flexbox;display: flex;}
+.column_intro li span{-webkit-box-flex: 1;-ms-flex: 1;flex: 1;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; }
+.column_intro li span i{color: #333;}
+.icon_yyz{background: url(../img/icon_yyz.png) no-repeat center;background-size:16px 16px;width:16px;height:16px;display: inline-block;vertical-align: middle;margin-left: 10px;}
+.detail_rooms{margin: 10px;background: #fff;border-radius: 4px;-webkit-border-radius: 4px;}
+.txtC{text-align: center;}
+.rooms_ul{padding:0 10px 10px 107px;}
+.rooms_ul li{line-height: 18px;position: relative;margin-bottom: 19px;}
+.rooms_ul li img{width: 90px; height: 60px;margin-left: -97px;margin-right:5px;vertical-align:top;}
+.rooms_p{display: inline-block; width: 100%;margin-top: -2px;}
+.rooms_p_d span{  display: inline-block; color: #999; float: left;}
+.rooms_p em{display: inline-block; float: right;}
+.rooms_p_d {padding-top: 10px; display: block;}
+.padding_010{padding: 0 10px 10px;}
+.seePic_con{background-color: #000;position: relative;min-height: 436px;}
+.seePic_con img{width: 100%;position: absolute;top: 50%;margin-top: -160px;}
+.seePic_con p{font-size: 14px;color: #fff;position: absolute;bottom: 0;line-height: 23px;padding: 10px;}
+.room_state{ text-align: center; padding: 25px 5px 5px 51px; color: #333;}
+.icon_sad{background:url(../img/icon_sad_pink.png) no-repeat center; background-size:34px 34px; width:34px; height:34px; display: inline-block; vertical-align:middle;}
+.p_state{line-height:18px; display: inline-block; text-align: left; padding-left:3px; vertical-align: middle;}
+.font16{font-size: 16px;}
+.btn_pink{display: block;height:44px;margin:20px 10px;background-color:#F05B72;color: #FFF;font-size: 16px;text-align: center;line-height: 44px;text-decoration: none;border-radius:3px;-webkit-border-radius:3px;}
+.map_wrapper{position: relative;}
+.map_wrapper img{width: 100%;}
+.seePic_con1 {background-color: #000;}
+.picCommentCount {color: white;}
+.imageContainer {display:block;overflow:hidden;}
+#landlordIntro li span {display:block;min-width:50%;}
+.dealFlex {display:block;min-width:33%;padding-top: 4px;}
+#imgPosition { position: absolute; right: 10px; color: #fff; display: inline-block; bottom: 5px; }
+#weekAndMonthPromotion {/*margin-top:-15px;*/}
+#weekPromotion,#monthPromotion {display:block;min-width:50%;}
+#tejiaPromotion {margin-top:-10px;}
+#tejiaPromotion span{display:block;min-width:100%}
+#yanzhen,#shipai,#suding,#dianping {display:inline;}
+#commentNum {margin:0;}
+#area {margin-bottom:-14px;margin-top:-12px;margin-left:3px;color:#999;}
+#houseType {margin-bottom:-16px;margin-left:3px;color:#999}
+#book-calendar {margin:0}
+#mainfocus {position:relative}
+.marginB5 {margin-bottom: 5px;}
+#displayAddress2 {margin-bottom: 15px;}
+/*退款详情*/
+.marginT30{ margin-top:30px;}
+.refund_box{margin: 10px; background-color: #fff; -webkit-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: 0 1px 1px #ddd;  box-shadow: 0 1px 1px #ddd;}
+.refundL{ float:left; margin:20px 6px auto;}
+.refundR{ float:left; margin-right:4px; margin-top:17px; margin-left:10px; width:85%;}
+.g_smallbox{ position:relative;}
+.g_infor{ color:#999; height:14px; display:block}
+.g_message{ margin-top:10px;background:#f6f6f6; border-radius:4px; -webkit-border-radius: 4px; color:#333; line-height:33px; text-indent:10px;}
+.g_icon{ position:absolute; top:34px; left:-8px; width: 0; height: 0; border-top:6px solid transparent; border-right:8px solid #f6f6f6; border-bottom: 6px solid transparent;}
+.g_bot{ text-align:right; margin-top:10px; margin-right:10px; padding-bottom:10px; line-height:20px;}
+/*end*/
+
+/*详情页发布系统v2新加样式*/
+.ul_sheshi{ width:100%;}
+.ul_sheshi li{ float:left; width:50%; height:39px; line-height:39px; padding-left:12px; box-sizing:border-box; border-bottom:1px solid #eee; font-size:14px; color:#666;}
+.ul_sheshi li span{ display:inline-block; vertical-align:middle;}
+.icon_room_2,.icon_sofa,.icon_bed_2,.icon_room_3,.icon_user,.icon_bed,.wirelessnetwork_ico,.wirednetwork_ico,.shower_ico,.tv_ico,.aircondition_ico,.heater_ico,.smoke_ico,.drinking_ico,.brush_ico,.soap_ico,.slippers_ico,.toiletpaper_ico,.towel_ico,.toiletries_ico,.icebox_ico,.washer_ico,.hotbathtub_ico,.elevator_ico,.iscook_ico,.pet_ico,.meet_ico,.accesssys_ico,.parkingspace_ico,.jinzhi_ico
+{ background:url(../img/houseicon_sprite.png) no-repeat 0 0; width:30px;}
+.icon_sofa{ background-position:0 -40px; height:26px;}
+.icon_bed_2{background-position:0 -78px; height:26px;}
+.icon_room_3{background-position:0 -119px; height:30px;}
+.icon_user{background-position:0 -163px; height:30px;}
+.icon_bed{ background-position:0 -206px; height:30px;}
+
+.wirelessnetwork_ico{ background-position:0 -716px; height:16px;}
+.wirednetwork_ico{ background-position:0 -888px; height:18px;}
+.shower_ico{ background-position:0 -464px; height:20px;}
+.tv_ico{ background-position:0 -344px; height:16px;}
+.aircondition_ico{ background-position:0 -433px; height:20px;}
+.heater_ico{ background-position:0 -587px; height:20px;}
+.smoke_ico{ background-position:0 -804px; height:20px;}
+.drinking_ico{ background-position:0 -858px; height:20px;}
+.brush_ico{ background-position:0 -831px; height:20px;}
+.soap_ico{ background-position:0 -743px; height:16px;}
+.slippers_ico{ background-position:0 -684px; height:20px;}
+.toiletpaper_ico{ background-position:0 -619px; height:20px;}
+.towel_ico{ background-position:0 -496px; height:20px;}
+.toiletries_ico{ background-position:0 -555px; height:20px;}
+.icebox_ico{ background-position:0 -280px; height:20px;}
+.washer_ico{ background-position:0 -771px; height:20px;}
+.hotbathtub_ico{ background-position:0 -915px; height:20px;}
+.elevator_ico{ background-position:0 -372px; height:20px;}
+.iscook_ico{ background-position:0 -944px; height:18px;}
+.pet_ico{ background-position:0 -312px; height:20px;}
+.meet_ico{ background-position:0 -404px; height:18px;}
+.accesssys_ico{ background-position:0 -527px; height:16px;}
+.parkingspace_ico{ background-position:0 -652px; height:21px;}
+
+.jinzhi_ico{ background-position:0 -248px; height:20px;}
+
+/*color*/
+.c_gray{ color:#cbcccc!important;}
+
+.zm_mianya{ display:inline-block; height:20px; line-height:20px; font-size:12px; color:#fff; background:#30c3a6; text-align:center; border-radius:12px; padding:0 7px;margin-left:5px;
+}
+.icon_collect,.icon_nocollect{ position:absolute; background:url(../img/collect.png) no-repeat; width:32px; height:32px; top:10px; right:5px; z-index:2}
+.icon_nocollect{background:url(../img/no_collect.png) no-repeat; z-index:2}
+.zhima_icon{  display:inline-block;  color:#fff; background:url(../img/zhima_icon.png) no-repeat; background-size:42px 15px; width:42px; height:15px; padding-left:13px; margin-left:5px; box-sizing:border-box;}

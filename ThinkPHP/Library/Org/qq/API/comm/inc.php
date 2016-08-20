@@ -1,0 +1,1 @@
+{"appid":"3651203592","appkey":"6dd71e218d3da58c318ec6e84fdc86cf","callback":"http://localhost/Connect2.0/example/oauth/callback.php","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

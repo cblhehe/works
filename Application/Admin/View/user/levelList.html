@@ -1,0 +1,59 @@
+<section>
+  <ul class="admin_tab">
+    <li><a  class="active">会员等级列表</a></li>
+    <li><a  href="{:U('Admin/User/levelAdd')}">会员等级添加</a></li>
+  </ul>
+  
+  <!--tabCont2-->
+  <div class="admin_tab_cont" style="display:block;" id="tab2">
+    <section>
+      <table class="table">
+        <tr id="head">
+          <th>等级ID</th>
+          <th>等级名称</th>
+          <th>消费额度</th>
+          <th>折扣率</th>
+          <th>操作</th>
+        </tr>
+        <foreach name='re' item='v'>
+        <tr>
+          <td>{$v.level_id}</td>
+          <td>{$v.level_name}</td>
+          <td>{$v.amount}</td>
+          <td>{$v.discount}</td>
+          <td>
+          <a href="{:U('Admin/User/levelModify')}?level_id={$v.level_id}" class="inner_btn">修改</a>
+          <a href="#" onclick='del({$v.level_id})' class="inner_btn2">删除</a>
+          </td>
+        </tr>
+        </foreach>
+      </table>
+      <aside class="paging" id="pageStr">
+        {$str}
+      </aside>
+    </section>
+  </div>
+  
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#level').addClass('active');
+})
+
+function del(level_id){
+  $.ajax({
+        type:'post',
+        url:"{:U('Admin/User/levelDel')}?level_id="+level_id,
+        dataType:'json',
+        success:function(data){ 
+            if (data=='success') {
+              alert('删除成功！');
+              window.location.href="{:U('Admin/User/levelList')}";
+            }else{
+              alert('删除失败！');                                          
+          }                          
+        }
+    })
+}
+</script>

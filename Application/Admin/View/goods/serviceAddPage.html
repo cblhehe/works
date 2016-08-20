@@ -1,0 +1,126 @@
+<section>
+	<ul class="admin_tab">
+		<li><a href="{:U('Admin/Goods/serviceList')}">服务列表</a></li>
+		<li><a  class="active">服务添加</a></li>
+		
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+	<form action="{:U('Admin/Goods/serviceSave')}"  method="post" enctype="multipart/form-data">
+		<ul class="ulColumn2">
+			<li>
+				<span class="item_name" style="width:120px;">服务名称：</span>
+				<input type="text" class="textbox textbox_295 content" name="service_name" id="service_name" />
+				<span class="errorTips" id="t1">服务名称不能为空！</span>
+			</li>
+			<li>
+		        <span class="item_name" style="width:120px;">上级分类：</span>
+		        <select class="select" name="pid" id="pid">
+		         	<option value="0">顶级分类</option>
+		         	<foreach name='arr' item='v'>
+		         	<option value="{$v.service_id}">
+		         		<if condition='$v.pid eq 0 '>
+						┣{$v.service_name}
+						<else/>
+						&nbsp;&nbsp;{$v.deli}{$v.service_name}
+						</if>
+		         	</option>
+		         	</foreach>
+		        </select>
+	       </li>
+	       <li>
+				<span class="item_name" style="width:120px;">定金：</span>
+				<input type="text" class="textbox textbox_70 content" name="deposit" id="deposit"  />&nbsp;&nbsp;元
+				<span class="errorTips" id="t2">请填写定金！</span>
+			</li>
+			<!-- <li>
+				<span class="item_name" style="width:120px;">佣金：</span>
+				<input type="text" class="textbox textbox_70 content" name="brokerage" id="brokerage"  />&nbsp;&nbsp;元
+				<span class="errorTips" id="t3">请填写佣金！</span>
+			</li> -->
+			<li>
+		        <span class="item_name" style="width:120px;">是否显示</span>
+		        <label class="single_selection"><input type="radio" name="isshow" value="1" checked="checked" />是</label>
+		        <label class="single_selection"><input type="radio" name="isshow" value="0"/>否</label>
+	       </li>
+			<li>
+				<span class="item_name" style="width:120px;">排序：</span>
+				<input type="text" class="textbox textbox_70 content" name="order" id="order" />
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">服务图片：</span>
+				<label class="uploadImg">
+				<input type="file" name="service_image" id="service_image"  />
+				<span>上传图片</span>
+				</label>
+				<img src='' id='img' height='82' alt='' style='margin:-22px 10px 18px 10px;display: none;' />
+				
+			</li>
+
+			<li>
+				<span class="item_name" style="width:120px;"></span>
+				<input type="submit" class="link_btn" id="submit" value="添加" />
+			</li>
+		</ul>
+	</form>
+	</div>
+
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+$('#service').addClass('active');
+
+
+//上传图片预览
+$("#service_image").change(function(){
+    var objUrl = getObjectURL(this.files[0]) ;
+    if (objUrl) {
+    	$("#img").attr("src",objUrl).show();
+    }
+}) ; 
+ 
+function getObjectURL(file) {
+		var url = null ; 
+		if (window.createObjectURL!=undefined) { // basic
+			url = window.createObjectURL(file) ;
+		} else if (window.URL!=undefined) { // mozilla(firefox)
+			url = window.URL.createObjectURL(file) ;
+		} else if (window.webkitURL!=undefined) { // webkit or chrome
+			url = window.webkitURL.createObjectURL(file) ;
+		}
+		return url ;
+}
+
+//	提交前
+$('#submit').click(function(){
+	if ($.trim($('#service_name').val())=='') {
+		$('#t1').show();
+		$('#service_name').focus();
+		return false;
+	}else{
+		$('#t1').hide();
+	}
+	if ($.trim($('#deposit').val())=='') {
+		$('#t2').show();
+		$('#deposit').focus();
+		return false;
+	}else{
+		$('#t2').hide();
+	}
+	/*if ($.trim($('#brokerage').val())=='') {
+		$('#t3').show();
+		$('#brokerage').focus();
+		return false;
+	}else{
+		$('#t3').hide();
+	}*/
+	
+})
+
+
+});
+
+
+
+</script>

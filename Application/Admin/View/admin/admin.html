@@ -1,0 +1,108 @@
+<section>
+	<ul class="admin_tab">
+		<li><a href="{:U('Admin/Admin/adminList')}">管理员列表</a></li>
+		<li><a class="active" >添加管理员</a></li>
+	</ul>
+	<!--tabCont1-->
+	<div class="admin_tab_cont" style="display:block;" id="tab1">
+		<ul class="ulColumn2">
+			<li>
+				<span class="item_name" style="width:120px;">管理员账号：</span>
+				<input type="text" class="textbox textbox_225" name="username" id="username" />
+				<span class="errorTips" id="w1">管理员账号不能为空！</span>
+				<span class="errorTips" id="w11">该管理员名称已存在！</span>
+			</li>
+			<li>
+				<span class="item_name" style="width:120px;">密码：</span>
+				<input type="text" class="textbox textbox_225" name="password" id="password" />
+				<span class="errorTips" id="w2">密码不能为空！</span>
+			</li>
+			<li>
+		        <span class="item_name" style="width:120px;">管理员角色：</span>
+		        <label class="single_selection"><input type="radio" name="role" value="0" checked="checked" />普通管理员</label>
+		        <label class="single_selection"><input type="radio" name="role" value="2"/>中级管理员</label>
+		        <label class="single_selection"><input type="radio" name="role" value="1"/>超级管理员</label>
+	       	</li>
+	       	<li style="color:gray;font-size:12px;padding-left:50px;margin-top:30px;">
+	       	<p>管理员权限说明：</p><br/>
+	       	<p>1、普通管理员可操作功能模块为：商品管理、广告管理</p><br/>
+	       	<p>2、中级管理员可操作功能模块为：会员管理、订单管理</p><br/>
+	       	<p>3、超级管理员具有最高权限，可操作所有模块</p>
+	       	</li>
+			<li>
+				<span class="item_name" style="width:120px;"></span>
+				<input type="button" class="link_btn" id="submit" value="添加"/>
+			</li>
+		</ul>
+	</div>
+	
+	
+</section>
+<!--tabStyle-->
+<script>
+$(document).ready(function(){
+
+$('#admin').addClass('active');
+
+/*$('input[name=username]').change(function(){
+	var url="{:U('Admin/Admin/isexist')}";
+	var username=$.trim($('input[name=username]').val());
+	if (username!='') {
+	$.ajax({  
+	    type: "post",  
+	    url: url,  
+	    dataType: "json",  
+	    data: {username:username},  
+	    success: function(data){  
+	      if (data=='exist') {
+	      	 $('#w11').show();
+	      	 return false;
+	      }else{
+	      	console.log(data);
+	      	 $('#w11').hide();
+	      }
+	    }  
+	  });  
+	}
+})*/
+//	提交前
+$('#submit').click(function(){
+	if ($.trim($('#username').val())=='') {
+		$('#w1').show();
+		return false;
+	}else{
+		$('#w1').hide();
+	}
+	if ($.trim($('#password').val())=='') {
+		$('#w2').show();
+		return false;
+	}else{
+		$('#w2').hide();
+	}
+	var params = $("input").serialize();  
+    var url = "{:U('Admin/Admin/save')}";  
+    $.ajax({  
+        type: "post",  
+        url: url,  
+        dataType: "json",  
+        data: params,  
+        success: function(data){  
+          if (data=='success') {
+          	 alert('添加成功!');
+            window.location.href="{:U('Admin/Admin/adminList')}";
+          }else if(data=='exist'){
+          	$('#w11').show();
+          	setTimeout(function(){$('#w11').hide();},2000);
+          	return false;
+          }else{
+          	alert('添加失败！');
+          }
+        }  
+      });  
+	
+})
+
+
+
+});
+</script>
